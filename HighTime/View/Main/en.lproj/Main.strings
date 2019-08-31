@@ -1,0 +1,168 @@
+
+/* Class = "UILabel"; text = "Как это работает?"; ObjectID = "240-KK-Klx"; */
+"240-KK-Klx.text" = "Как это работает?";
+
+/* Class = "UIButton"; normalTitle = "Отзывы"; ObjectID = "3Vh-Ph-0a0"; */
+"3Vh-Ph-0a0.normalTitle" = "Отзывы";
+
+/* Class = "UILabel"; text = "20-08-2019"; ObjectID = "3Xs-Ei-vj2"; */
+"3Xs-Ei-vj2.text" = "20-08-2019";
+
+/* Class = "UILabel"; text = "ул. Тыныстанова 8/1  (пересекает Ахунбаева)"; ObjectID = "8dr-BS-gmI"; */
+"8dr-BS-gmI.text" = "ул. Тыныстанова 8/1  (пересекает Ахунбаева)";
+
+/* Class = "UIButton"; normalTitle = "Инструкция"; ObjectID = "91A-f4-9jU"; */
+"91A-f4-9jU.normalTitle" = "Инструкция";
+
+/* Class = "UILabel"; text = " Ураааа!!! В школу High\nридет самый\nбогатый человек\nКыргызстана Аскар\nСАЛЫМБЕКОВ!!!"; ObjectID = "Bfk-hE-ohQ"; */
+"Bfk-hE-ohQ.text" = " Ураааа!!! В школу High\nридет самый\nбогатый человек\nКыргызстана Аскар\nСАЛЫМБЕКОВ!!!";
+
+/* Class = "UILabel"; text = "будущих офисов"; ObjectID = "CbP-Jb-foY"; */
+"CbP-Jb-foY.text" = "будущих офисов";
+
+/* Class = "UILabel"; text = "Он поделится своими знаниями о богатстве. На семинаре каждый может задать вопрос на интерисующие темы!"; ObjectID = "HEd-9r-Fmv"; */
+"HEd-9r-Fmv.text" = "Он поделится своими знаниями о богатстве. На семинаре каждый может задать вопрос на интерисующие темы!";
+
+/* Class = "UILabel"; text = "НАШИ ПАРТНЕРЫ"; ObjectID = "HvW-GQ-Ybw"; */
+"HvW-GQ-Ybw.text" = "НАШИ ПАРТНЕРЫ";
+
+/* Class = "UILabel"; text = "htlife.2020@gmail.com"; ObjectID = "ItR-Vy-tql"; */
+"ItR-Vy-tql.text" = "htlife.2020@gmail.com";
+
+/* Class = "UIButton"; normalTitle = "Обучение"; ObjectID = "JiY-wh-lsP"; */
+"JiY-wh-lsP.normalTitle" = "Обучение";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "LRj-kA-awU"; */
+"LRj-kA-awU.text" = "100";
+
+/* Class = "UILabel"; text = "50 000"; ObjectID = "LVM-bk-KWR"; */
+"LVM-bk-KWR.text" = "50 000";
+
+/* Class = "UILabel"; text = "Другие новости"; ObjectID = "NL0-PI-pIh"; */
+"NL0-PI-pIh.text" = "Другие новости";
+
+/* Class = "UILabel"; text = "опыта"; ObjectID = "PHA-RQ-Ccg"; */
+"PHA-RQ-Ccg.text" = "опыта";
+
+/* Class = "UIButton"; normalTitle = "Наши филиалы"; ObjectID = "Ptx-fG-cF5"; */
+"Ptx-fG-cF5.normalTitle" = "Наши филиалы";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "Qeh-gW-QZq"; */
+"Qeh-gW-QZq.text" = "100";
+
+/* Class = "UILabel"; text = "Наша команда"; ObjectID = "RDk-1q-Wyw"; */
+"RDk-1q-Wyw.text" = "Наша команда";
+
+/* Class = "UILabel"; text = "Хотите консультацию?"; ObjectID = "Rjj-Sj-iJa"; */
+"Rjj-Sj-iJa.text" = "Хотите консультацию?";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "S1a-fq-DhZ"; */
+"S1a-fq-DhZ.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Отправить"; ObjectID = "SlP-sS-1yB"; */
+"SlP-sS-1yB.normalTitle" = "Отправить";
+
+/* Class = "UILabel"; text = "Основатель HighTime"; ObjectID = "TCH-ch-4C0"; */
+"TCH-ch-4C0.text" = "Основатель HighTime";
+
+/* Class = "UITextField"; placeholder = "   Ваше имя"; ObjectID = "VBD-h6-yfC"; */
+"VBD-h6-yfC.placeholder" = "   Ваше имя";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "VS3-61-3bh"; */
+"VS3-61-3bh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "корпоративных клиентов"; ObjectID = "Vbd-AJ-Iqj"; */
+"Vbd-AJ-Iqj.text" = "корпоративных клиентов";
+
+/* Class = "UILabel"; text = "175"; ObjectID = "VsN-44-gGK"; */
+"VsN-44-gGK.text" = "175";
+
+/* Class = "UIButton"; normalTitle = "Связаться с нами"; ObjectID = "Vvf-hf-2cr"; */
+"Vvf-hf-2cr.normalTitle" = "Связаться с нами";
+
+/* Class = "UIButton"; normalTitle = "О нас"; ObjectID = "W1X-Fs-vB4"; */
+"W1X-Fs-vB4.normalTitle" = "О нас";
+
+/* Class = "UILabel"; text = "+996 755 44 44 59"; ObjectID = "WCF-RG-ZVp"; */
+"WCF-RG-ZVp.text" = "+996 755 44 44 59";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XXA-PP-6sP"; */
+"XXA-PP-6sP.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Ураааа!!! В школу High ридет самый богатый человек Кыргызстана Аскар САЛЫМБЕКОВ!!!"; ObjectID = "ZIb-SH-UjA"; */
+"ZIb-SH-UjA.text" = "Ураааа!!! В школу High ридет самый богатый человек Кыргызстана Аскар САЛЫМБЕКОВ!!!";
+
+/* Class = "UINavigationItem"; title = "Новости"; ObjectID = "ZRo-Xp-R6B"; */
+"ZRo-Xp-R6B.title" = "Новости";
+
+/* Class = "UIButton"; normalTitle = "Личный кабинет"; ObjectID = "aoL-mz-VnB"; */
+"aoL-mz-VnB.normalTitle" = "Личный кабинет";
+
+/* Class = "UILabel"; text = "Уровни английского языка"; ObjectID = "bCP-oz-1xC"; */
+"bCP-oz-1xC.text" = "Уровни английского языка";
+
+/* Class = "UILabel"; text = "О нас"; ObjectID = "bw0-O5-dlo"; */
+"bw0-O5-dlo.text" = "О нас";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dM8-UF-zMz"; */
+"dM8-UF-zMz.text" = "Label";
+
+/* Class = "UILabel"; text = "Отзывы о нас"; ObjectID = "gGi-Xj-lJG"; */
+"gGi-Xj-lJG.text" = "Отзывы о нас";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jKP-HM-LGr"; */
+"jKP-HM-LGr.text" = "Label";
+
+/* Class = "UILabel"; text = "Гульзат Мамытбек"; ObjectID = "jeU-0A-IVb"; */
+"jeU-0A-IVb.text" = "Гульзат Мамытбек";
+
+/* Class = "UIButton"; normalTitle = "Пройти тест"; ObjectID = "mEj-rJ-mzY"; */
+"mEj-rJ-mzY.normalTitle" = "Пройти тест";
+
+/* Class = "UILabel"; text = "12 лет"; ObjectID = "mju-Hv-XcE"; */
+"mju-Hv-XcE.text" = "12 лет";
+
+/* Class = "UILabel"; text = "Бегимай Айбекова"; ObjectID = "q9c-Sw-atm"; */
+"q9c-Sw-atm.text" = "Бегимай Айбекова";
+
+/* Class = "UIBarButtonItem"; title = "Выйти"; ObjectID = "syb-q4-mG5"; */
+"syb-q4-mG5.title" = "Выйти";
+
+/* Class = "UIButton"; normalTitle = "Поделиться"; ObjectID = "tE5-0O-aki"; */
+"tE5-0O-aki.normalTitle" = "Поделиться";
+
+/* Class = "UILabel"; text = "17-08-2019"; ObjectID = "ts9-8E-w57"; */
+"ts9-8E-w57.text" = "17-08-2019";
+
+/* Class = "UILabel"; text = "Он поделится своими знаниями\nо богатстве. На семинаре\nкаждый может задать вопрос на интерисующие темы!"; ObjectID = "uQg-Yl-Emv"; */
+"uQg-Yl-Emv.text" = "Он поделится своими знаниями\nо богатстве. На семинаре\nкаждый может задать вопрос на интерисующие темы!";
+
+/* Class = "UILabel"; text = "Сотрудников"; ObjectID = "uSF-cy-9a0"; */
+"uSF-cy-9a0.text" = "Сотрудников";
+
+/* Class = "UILabel"; text = "+996 505 44 44 15"; ObjectID = "vTz-i7-V2s"; */
+"vTz-i7-V2s.text" = "+996 505 44 44 15";
+
+/* Class = "UITableViewController"; title = "News"; ObjectID = "va7-nP-BXj"; */
+"va7-nP-BXj.title" = "News";
+
+/* Class = "UILabel"; text = "выпускников"; ObjectID = "wGP-N6-QaF"; */
+"wGP-N6-QaF.text" = "выпускников";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wdG-Ig-ohn"; */
+"wdG-Ig-ohn.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "18-08-2019"; ObjectID = "wpk-co-9Eo"; */
+"wpk-co-9Eo.text" = "18-08-2019";
+
+/* Class = "UIButton"; normalTitle = "Наша команда"; ObjectID = "wuM-U0-mbZ"; */
+"wuM-U0-mbZ.normalTitle" = "Наша команда";
+
+/* Class = "UILabel"; text = "Руководитель проекта "; ObjectID = "xBg-hK-TqQ"; */
+"xBg-hK-TqQ.text" = "Руководитель проекта ";
+
+/* Class = "UIButton"; normalTitle = "Новости"; ObjectID = "yUM-rW-ha6"; */
+"yUM-rW-ha6.normalTitle" = "Новости";
+
+/* Class = "UITextField"; placeholder = "  Номер тел.: +996"; ObjectID = "z2R-8b-gpk"; */
+"z2R-8b-gpk.placeholder" = "  Номер тел.: +996";

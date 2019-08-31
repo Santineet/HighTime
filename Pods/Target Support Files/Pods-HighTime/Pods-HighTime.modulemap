@@ -1,0 +1,6 @@
+framework module Pods_HighTime {
+  umbrella header "Pods-HighTime-umbrella.h"
+
+  export *
+  module * { export * }
+}
