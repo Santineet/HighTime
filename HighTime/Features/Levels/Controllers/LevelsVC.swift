@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import PKHUD
 import SDWebImage
-import MMProgressHUD
 
 class LevelsVC: UIViewController {
 
@@ -48,9 +47,8 @@ class LevelsVC: UIViewController {
         self.levelsVM.getLevels { (error) in
             if error != nil {
                 HUD.hide()
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
-                self.navigationController?.popViewController(animated: true)
+                guard let navCont = self.navigationController else { return }
+                Alert.alertForTests(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self, navCont: navCont)
             }
         }
         

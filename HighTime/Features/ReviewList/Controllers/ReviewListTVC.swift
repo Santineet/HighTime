@@ -10,7 +10,6 @@ import UIKit
 import PKHUD
 import RxSwift
 import SDWebImage
-import MMProgressHUD
 
 class ReviewListTVC: UITableViewController {
     
@@ -39,9 +38,7 @@ class ReviewListTVC: UITableViewController {
         self.reviewVM.getReview { (error) in
             if error != nil {
                 HUD.hide()
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
-                self.navigationController?.popViewController(animated: true)
+                Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
             }
         }
         

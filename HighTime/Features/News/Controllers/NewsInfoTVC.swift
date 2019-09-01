@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SDWebImage
-import MMProgressHUD
 
 class NewsInfoTVC: UITableViewController {
     

@@ -18,62 +18,48 @@ class ServiceManager: NSObject {
 
 
     //MARK: Login Methods
-    
-    func signIn(emailOrNumber: String, password: String, onCompletion: @escaping (([String: AnyObject]) -> Void), onError: @escaping ((String?) -> Void)) {
-        
-        let APIaddress =  "http://apitest.htlife.biz/api/auth/login"
-        
-        let headers: HTTPHeaders = [
-            "Accept": "*/*"
-        ]
-        
-        let data = [
-            "username": "sa@gmail.com",
-            "password": "qwerty"
-            ] as [String: String]
-        
-        Alamofire.request(APIaddress, method: .post, parameters: data, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            
-            switch response.result {
-            
-            case .success:
-                guard var result = response.result.value as? [String: AnyObject] else { return }
-                
-                if  result["result"] != nil {
-                    let data = result["result"]
-                    if let session = Mapper<LoginSuccess>().map(JSON: data as! [String : Any]) {
-                        print("Token: \(String(describing: session.success?.user_token))")
-                        onCompletion(data as! [String : AnyObject])
-                        LoginLogoutManager.instance.updateRootVC()
-
-                    }
-                    return
-                } else {
-
+    func registr(name: String,emailOrNumber: String, password: String,completion: @escaping Completion){
+        guard let url = URL(string: "http://apitest.htlife.biz/api/auth/register" ) else { return }
+        let params = ["name": name,"email": emailOrNumber, "password": password] as [String:Any]
+        Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
                 }
-                
-            case .failure(let error):
-                onError(error.localizedDescription)
-                return
-            }
-            
-            
         }
         
     }
+    
+    func login(emailOrNumber: String, password: String,completion: @escaping Completion){
+        guard let url = URL(string: "http://apitest.htlife.biz/api/auth/login" ) else { return }
+        let params = ["username": emailOrNumber, "password": password] as [String:Any]
+        Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
+            { responseJSON in
+                switch responseJSON.result {
+                case .success:
+                    completion(responseJSON.result.value, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+        }
+    }
+    
     
     //MARK: Запрос новостей
     //MARK: News Request
     func getNews(completion: @escaping Completion) {
         
         guard let newsUrl = URL(string: "http://apitest.htlife.biz/api/news/") else { return }
-
+        
         Alamofire.request(newsUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (responseJSON) in
             switch responseJSON.result {
             case .success:
                 completion(responseJSON.result.value, nil)
             case .failure(let error):
-                 completion(nil, error)
+                completion(nil, error)
             }
         }
     }
@@ -82,7 +68,7 @@ class ServiceManager: NSObject {
     //MARK: Запрос отзывов
     //MARK: Reviews Request
     func getReviewList(completion: @escaping Completion){
-         guard let reviewUrl = URL(string: "http://apitest.htlife.biz/api/reviews/list") else { return }
+        guard let reviewUrl = URL(string: "http://apitest.htlife.biz/api/reviews/list") else { return }
         
         Alamofire.request(reviewUrl, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (responseJSON) in
             switch responseJSON.result {
@@ -96,21 +82,21 @@ class ServiceManager: NSObject {
     
     //MARK: Запрос Teстов
     //MARK: Tests Request
-  
-        func getTest(completion: @escaping Completion){
-            let token = UserDefaults.standard.value(forKey: "userToken")
-            let header: HTTPHeaders = ["token": "\(token ?? "")"]
-       
-            let testRequestURL = URL(string: "http://apitest.htlife.biz/api/level-test/get-tests")
-            Alamofire.request(testRequestURL!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
-                switch responseJSON.result {
-                case .success:
-                    completion(responseJSON.result.value, nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
+    
+    func getTest(completion: @escaping Completion){
+        let token = UserDefaults.standard.value(forKey: "userToken")
+        let header: HTTPHeaders = ["token": "\(token ?? "")"]
+        
+        let testRequestURL = URL(string: "http://apitest.htlife.biz/api/level-test/get-tests")
+        Alamofire.request(testRequestURL!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
+            switch responseJSON.result {
+            case .success:
+                completion(responseJSON.result.value, nil)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
+    }
     
     
     //MARK: Запрос уровней
@@ -137,15 +123,13 @@ class ServiceManager: NSObject {
         Alamofire.request(lessonsUrl, method: .get, parameters: param, encoding: URLEncoding.default, headers: nil).responseJSON { (responseJSON) in
             switch responseJSON.result {
             case .success:
-                print("success")
                 completion(responseJSON.result.value, nil)
             case .failure(let error):
-                print(error.localizedDescription)
                 completion(nil, error)
             }
         }
     }
-  
+    
     //MARK: Запрос информации покупок уровней
     func getLevelIsOpen(param: [String:Any], completion: @escaping Completion) {
         let token = UserDefaults.standard.value(forKey: "userToken")
@@ -189,15 +173,12 @@ class ServiceManager: NSObject {
             case .success:
                 completion(responseJSON.result.value, nil)
             case .failure(let error):
-                print("errorr")
                 completion(nil, error)
             }
         }
     }
     
     func getPaymentUrl(levelId: Int, completion: @escaping Completion){
-        print("getPaymentUrl")
-
         let token = UserDefaults.standard.value(forKey: "userToken")
         let header: HTTPHeaders = ["token": "\(token ?? "")"]
         guard let lessonTutorialURL = URL(string: "http://apitest.htlife.biz/api/user/payment/by-with-paybox/\(levelId)") else { return }

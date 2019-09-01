@@ -9,90 +9,76 @@
 import UIKit
 import Alamofire
 import ObjectMapper
-import MMProgressHUD
+import RxSwift
+import PKHUD
 
 
 class RegistrationVC: UIViewController {
-
+    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var emailOrNumber: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var registryButton: UIButton!
     
-
+    
+    var loginVM = LoginViewModel()
+    var userInfo = LogInModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func registryButton(_ sender: UIButton) {
-  
+        
+        HUD.show(.progress)
         guard let name = self.name.text, self.name.text?.count != 0 else { return }
         guard let emailOrNumber = emailOrNumber.text else { return }
         guard let password = password.text else { return }
         
         if(!name.isEmpty && !emailOrNumber.isEmpty && !password.isEmpty){
-        
-            guard let url = URL(string: "http://apitest.htlife.biz/api/auth/register" ) else { return }
-
-            let params = ["name": name,"email": emailOrNumber, "password": password] as [String:Any]
             
-            Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON
-                { response in
-                switch response.result {
-                case .success:
-                    
-                    guard let jsonArray = response.result.value as? [String: Any] else { return }
-                    if jsonArray["user"] != nil {
-                        let user = jsonArray["user"]
-                        if let userInfo = Mapper<LogInModel>().map(JSON: user as! [String : Any]) {
-                            guard let userName = userInfo.user_name else {
-                                MMProgressHUD.dismissWithError("userName is nil")
-                                return
-                            }
-                            guard let userEmail = userInfo.user_email else {
-                                MMProgressHUD.dismissWithError("userEmail is nil")
-                                return
-                            }
-                            UserDefaults.standard.setValue(userEmail, forKey: "userEmail")
-                            UserDefaults.standard.setValue(userName, forKey: "userName")
-                        }
-                        
-                        if jsonArray["result"] != nil{
-                         let result = jsonArray["result"]
-                        if let session = Mapper<LoginSuccess>().map(JSON: result as! [String : Any]) {
-                            guard let token = session.success?.user_token else {
-                                MMProgressHUD.dismissWithError("token is nil")
-                                return
-                            }
-                            print("Token: \(token)")
-                            UserDefaults.standard.setValue(token, forKey: "userToken")
-                        } else {
-                            MMProgressHUD.dismissWithError("token is nil")
-                            return
-                        }
-                        
-                            LoginLogoutManager.instance.updateRootVC()
-                    }
-                    
-                    } else {
-                        Alert.displayAlert(title: "Ошибка", message: "Такой E-mail уже зарегистрирован", vc: self)
-                    }
-                    break
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
+            self.loginVM.registration(name: name, emailOrNumber: emailOrNumber, password: password) { (error) in
+                if error != nil {
+                    HUD.hide()
+                    Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
                 }
             }
-
             
+            self.loginVM.registrBehaviorRelay.skip(1).subscribe(onNext: { (userInfo) in
+                self.userInfo = userInfo
+                
+                if userInfo.message == "" {
+                    
+                    let userName = userInfo.user.name
+                    let userEmail = userInfo.user.email
+                    let token = userInfo.result.success.token
+                    print(userName)
+                    print(userEmail)
+                    print(token)
+                    
+                    UserDefaults.standard.setValue(userName, forKey: "userName")
+                    UserDefaults.standard.setValue(userEmail, forKey: "userEmail")
+                    UserDefaults.standard.setValue(token, forKey: "userToken")
+                    HUD.hide()
+                    LoginLogoutManager.instance.updateRootVC()
+                }else{
+                    HUD.hide()
+                    Alert.displayAlert(title: "Ошибка", message: "Такой E-mail уже зарегистрирован", vc: self)
+                }
+            }).disposed(by: disposeBag)
             
+            self.loginVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+                HUD.hide()
+                Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+            }).disposed(by: disposeBag)
         }else{
+            HUD.hide()
             Alert.displayAlert(title: "Ошибка", message: "Заполните все поля!", vc: self)
         }
         
-    
+        
     }
     
-
+    
 }

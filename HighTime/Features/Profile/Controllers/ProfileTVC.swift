@@ -34,12 +34,11 @@ class ProfileTVC: UITableViewController {
                 print(error?.localizedDescription ?? "error")
             }
         }
-        
+        HUD.hide()
         self.profileVM.myLevelsBehaviorRelay.skip(1).subscribe(onNext: { (myLevels) in
             self.myLevels = myLevels
             print(self.myLevels[1].name)
             self.setupMyLevels()
-            HUD.hide()
         }).disposed(by: disposeBag)
         
         self.profileVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in

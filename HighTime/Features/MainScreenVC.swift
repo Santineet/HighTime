@@ -21,11 +21,11 @@ class MainScreenVC: UIViewController {
     }
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
-        
+        let token = UserDefaults.standard.value(forKey: "userToken") as! String
+        UserDefaults.standard.removeObject(forKey: "\(token)myLevel")
         UserDefaults.standard.removeObject(forKey: "userToken")
         UserDefaults.standard.removeObject(forKey: "userName")
         UserDefaults.standard.removeObject(forKey: "userEmail")
-
         LoginLogoutManager.instance.updateRootVC()
     
     }

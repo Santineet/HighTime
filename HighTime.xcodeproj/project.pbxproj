@@ -163,6 +163,9 @@
 		2EB8B69E23054BC00014921E /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB8B69D23054BC00014921E /* LogInModel.swift */; };
 		2EC5803023056D8100C3621E /* LoginSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC5802F23056D8100C3621E /* LoginSuccess.swift */; };
 		2EC58034230678C800C3621E /* aboutUs.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EC58033230678C800C3621E /* aboutUs.png */; };
+		2ECD783D231AA4E000548BE1 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD783C231AA4E000548BE1 /* LoginRepository.swift */; };
+		2ECD783F231BB22100548BE1 /* LoginUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD783E231BB22100548BE1 /* LoginUserModel.swift */; };
+		2ECD7841231BCFAB00548BE1 /* LoginToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD7840231BCFAB00548BE1 /* LoginToken.swift */; };
 		2EE79F8C231421960080D871 /* CellForCollectioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE79F8B231421960080D871 /* CellForCollectioView.swift */; };
 		2EE79F8E2314F0FD0080D871 /* LevelInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE79F8D2314F0FD0080D871 /* LevelInfoRepository.swift */; };
 		2EE79F922314F1210080D871 /* LevelInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE79F912314F1210080D871 /* LevelInfoViewModel.swift */; };
@@ -338,6 +341,9 @@
 		2EB8B69D23054BC00014921E /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
 		2EC5802F23056D8100C3621E /* LoginSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccess.swift; sourceTree = "<group>"; };
 		2EC58033230678C800C3621E /* aboutUs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutUs.png; sourceTree = "<group>"; };
+		2ECD783C231AA4E000548BE1 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		2ECD783E231BB22100548BE1 /* LoginUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserModel.swift; sourceTree = "<group>"; };
+		2ECD7840231BCFAB00548BE1 /* LoginToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToken.swift; sourceTree = "<group>"; };
 		2EE79F8B231421960080D871 /* CellForCollectioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellForCollectioView.swift; sourceTree = "<group>"; };
 		2EE79F8D2314F0FD0080D871 /* LevelInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfoRepository.swift; sourceTree = "<group>"; };
 		2EE79F912314F1210080D871 /* LevelInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfoViewModel.swift; sourceTree = "<group>"; };
@@ -541,7 +547,7 @@
 				2EE79F9B231539C70080D871 /* Lessons */,
 				2EAB48322313E6DC00A978E2 /* Level Info */,
 				2EAB48112313A4B400A978E2 /* Levels */,
-				2E577071230D2A560062DAF6 /* Tests */,
+				2E577071230D2A560062DAF6 /* Tests for my level */,
 				2E40AD19230AEFA8001D08F2 /* AddReview */,
 				2E40ACFB230AB6DE001D08F2 /* ReviewList */,
 				2EB8B68C2303EC0E0014921E /* MainScreenVC.swift */,
@@ -622,7 +628,7 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		2E577071230D2A560062DAF6 /* Tests */ = {
+		2E577071230D2A560062DAF6 /* Tests for my level */ = {
 			isa = PBXGroup;
 			children = (
 				2E577079230D2DB60062DAF6 /* Cells */,
@@ -630,7 +636,7 @@
 				2E06D24D230EACDF00B753AC /* Repository */,
 				2E06D24C230EACD600B753AC /* Controllers */,
 			);
-			path = Tests;
+			path = "Tests for my level";
 			sourceTree = "<group>";
 		};
 		2E577079230D2DB60062DAF6 /* Cells */ = {
@@ -745,6 +751,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		2E6BFD0C231A8BD200B6F021 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2E6D5EEF2303E396008A8B9F /* Assets.xcassets */,
+				2E6D5EF12303E396008A8B9F /* LaunchScreen.storyboard */,
+				2E0C441C230690F300B8A277 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2E6D5EDC2303E393008A8B9F = {
 			isa = PBXGroup;
 			children = (
@@ -771,10 +787,8 @@
 				2EB8B695230424A10014921E /* Model */,
 				2E6D5EFD2303E64D008A8B9F /* View */,
 				2E40ACF8230AAA29001D08F2 /* Features */,
+				2E6BFD0C231A8BD200B6F021 /* Resources */,
 				2E6D5EE82303E393008A8B9F /* AppDelegate.swift */,
-				2E6D5EEF2303E396008A8B9F /* Assets.xcassets */,
-				2E0C441C230690F300B8A277 /* Images */,
-				2E6D5EF12303E396008A8B9F /* LaunchScreen.storyboard */,
 				2E6D5EF42303E396008A8B9F /* Info.plist */,
 			);
 			path = HighTime;
@@ -783,6 +797,7 @@
 		2E6D5EFA2303E4ED008A8B9F /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				2ECD783B231AA4C500548BE1 /* New Group */,
 				2EB8B696230532A20014921E /* ViewModel */,
 				2EB8B690230409350014921E /* Controllers */,
 			);
@@ -1008,7 +1023,9 @@
 			isa = PBXGroup;
 			children = (
 				2EB8B69D23054BC00014921E /* LogInModel.swift */,
+				2ECD783E231BB22100548BE1 /* LoginUserModel.swift */,
 				2EC5802F23056D8100C3621E /* LoginSuccess.swift */,
+				2ECD7840231BCFAB00548BE1 /* LoginToken.swift */,
 				2E07F6F5230837CA005B4731 /* NewsModel.swift */,
 				2E40AD0B230AC066001D08F2 /* ReviewModel.swift */,
 				2E577082230D56B50062DAF6 /* PassTestModel.swift */,
@@ -1032,6 +1049,14 @@
 				2EB8B69B230549990014921E /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2ECD783B231AA4C500548BE1 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				2ECD783C231AA4E000548BE1 /* LoginRepository.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		2EE79F8F2314F1020080D871 /* Repository */ = {
@@ -1366,6 +1391,7 @@
 				2EB8B694230409CD0014921E /* RegistrationVC.swift in Sources */,
 				2E6BFC9223191E7C00B6F021 /* ProfileViewModel.swift in Sources */,
 				2E06D240230D63CF00B753AC /* Answers.swift in Sources */,
+				2ECD7841231BCFAB00548BE1 /* LoginToken.swift in Sources */,
 				2EAB48242313C17300A978E2 /* LevelsViewModel.swift in Sources */,
 				2EAB48202313BD4F00A978E2 /* LevelsModel.swift in Sources */,
 				2EE79FAC23154F040080D871 /* LessonRepository.swift in Sources */,
@@ -1380,6 +1406,7 @@
 				2E6D5F2C2303E899008A8B9F /* IQKeyboardManager.swift in Sources */,
 				2E6D5F292303E899008A8B9F /* IQKeyboardManagerConstants.swift in Sources */,
 				2E6D5F262303E899008A8B9F /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				2ECD783D231AA4E000548BE1 /* LoginRepository.swift in Sources */,
 				2E6D5F312303E899008A8B9F /* IQNSArray+Sort.swift in Sources */,
 				2E40AD07230ABB54001D08F2 /* ReviewWithImageTVCell.swift in Sources */,
 				2EAB48492314146200A978E2 /* lessonLabelCell.swift in Sources */,
@@ -1401,6 +1428,7 @@
 				2E577073230D2AD50062DAF6 /* PassTheTestCVC.swift in Sources */,
 				2E6BFC832318E28700B6F021 /* PayViewModel.swift in Sources */,
 				2EAB48432313F97500A978E2 /* PaymentInfoTVCell.swift in Sources */,
+				2ECD783F231BB22100548BE1 /* LoginUserModel.swift in Sources */,
 				2EE79F8E2314F0FD0080D871 /* LevelInfoRepository.swift in Sources */,
 				2E57707B230D2DD90062DAF6 /* PassTheTestCVCell.swift in Sources */,
 				2E6BFC812318E27200B6F021 /* PayRepository.swift in Sources */,

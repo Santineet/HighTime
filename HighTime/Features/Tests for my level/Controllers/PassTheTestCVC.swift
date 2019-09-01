@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import PKHUD
 import MBRadioButton
-import MMProgressHUD
 
 
 class PassTheTestCVC: UICollectionViewController {
@@ -40,8 +39,7 @@ class PassTheTestCVC: UICollectionViewController {
         self.testVM.getTest { (error) in
             if error != nil {
                 HUD.hide()
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
+                Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
             }
         }
         
@@ -138,17 +136,27 @@ class PassTheTestCVC: UICollectionViewController {
                 return
             }
         }
+        
         let token = UserDefaults.standard.value(forKey: "userToken") as! String
+        guard let navCont = navigationController else {return}
+
         if corectAnswersNum < 4 {
+            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Alphabet", vc: self, navCont: navCont)
             UserDefaults.standard.set(0, forKey: "\(token)myLevel")
-        } else if corectAnswersNum >= 4 && corectAnswersNum < 7 { UserDefaults.standard.set(1, forKey: "\(token)myLevel")
+        } else if corectAnswersNum >= 4 && corectAnswersNum < 7 {
+             Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Beginner", vc: self, navCont: navCont)
+            UserDefaults.standard.set(1, forKey: "\(token)myLevel")
         } else if corectAnswersNum >= 7 && corectAnswersNum < 10 {
+            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Pre - Intermediate", vc: self, navCont: navCont)
             UserDefaults.standard.set(2, forKey: "\(token)myLevel")
         } else if corectAnswersNum >= 10 && corectAnswersNum < 12 {
+            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Intermediate", vc: self, navCont: navCont)
             UserDefaults.standard.set(3, forKey: "\(token)myLevel")
         } else if corectAnswersNum == 12 {
+            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Upper - Intermediate", vc: self, navCont: navCont)
             UserDefaults.standard.set(4, forKey: "\(token)myLevel")
         } else if corectAnswersNum > 12 {
+            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Advanced", vc: self, navCont: navCont)
             UserDefaults.standard.set(5, forKey: "\(token)myLevel")
         }
         

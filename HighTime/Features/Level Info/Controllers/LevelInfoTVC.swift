@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import PKHUD
-import MMProgressHUD
 
 class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
     
@@ -34,9 +33,8 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
         levelInfoVM.getLessonsByLevelId(levelId: levelInfo.id) { (error) in
             if error != nil {
                 HUD.hide()
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
-            self.navigationController?.popViewController(animated: true)
+                Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         
@@ -215,8 +213,7 @@ extension LevelInfoTVC: UICollectionViewDataSource, UICollectionViewDelegate, UI
         self.levelInfoVM.paymentWithPromocode(levelId: self.levelInfo.id ,promocode: promocode) { (error) in
             if error != nil {
                 HUD.hide()
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
+                Alert.displayAlert(title: "Error", message: error?.localizedDescription ?? "Извините произошла ошибка, попробуйте позже", vc: self)
             }
             
         }

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class LoginViewModel: NSObject{
+class AddReviewViewModel: NSObject{
     
     //    MARK:    Variables
     //    MARK:    Переменные

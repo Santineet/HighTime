@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import PKHUD
 import AVKit
-import MMProgressHUD
 
 class LessonsVC: UIViewController {
     
@@ -36,8 +35,8 @@ class LessonsVC: UIViewController {
     func getLessonTutorial(lessonId: Int) {
         self.lessonVM.getLessonInfo(lessonId: lessonId) { (error) in
             if error != nil {
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
+                HUD.hide()
+                Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
             }
         }
         
@@ -47,11 +46,12 @@ class LessonsVC: UIViewController {
             self.setupView()
             self.tableView.reloadData()
             HUD.hide()
-        }, onError: { (error) in
-            HUD.hide()
-            MMProgressHUD.show()
-            MMProgressHUD.dismissWithError(error.localizedDescription)
         }).disposed(by: self.disposeBag)
+        
+        self.lessonVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            HUD.hide()
+            Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+        }).disposed(by: disposeBag)
         
     }
     
@@ -105,10 +105,8 @@ extension LessonsVC: UITableViewDelegate,UITableViewDataSource {
                 try AVAudioSession.sharedInstance().setCategory(.playback)
             }
             catch {
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError("Произошла ошибка")
+                Alert.displayAlert(title: "Ошибка", message: "Извините произошла ошибка, попробуйте позже", vc: self)
             }
-            
             present(videoPlayer, animated: true) {
                 video.play()
             }

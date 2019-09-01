@@ -53,9 +53,10 @@ class PassLessonTestVC: UIViewController {
                 return
             }
         }
-        print("corectAnswersNum \(corectAnswersNum)")
-        self.navigationController?.popViewController(animated: true)
+        guard let navCont = navigationController else {return}
+        Alert.alertForTests(title: "", message: "Количество правильных ответов: \(corectAnswersNum)", vc: self, navCont: navCont)
     }
+    
     
 }
 

@@ -1,23 +1,23 @@
 //
-//  LoginSuccess.swift
+//  LoginToken.swift
 //  HighTime
 //
-//  Created by Mairambek on 15/08/2019.
+//  Created by Mairambek on 01/09/2019.
 //  Copyright © 2019 Sunrise. All rights reserved.
 //
 
 import UIKit
 import ObjectMapper
 
-class LoginSuccess: NSObject, Mappable {
-   
-    var success = LoginToken() 
+class LoginToken: NSObject, Mappable {
+    
+    var token: String = ""
     
     required convenience init?(map: Map) {
         self.init()
     }
     
     func mapping(map: Map) {
-        success <- map["success"]
+        token <- map["user_token"]
     }
 }

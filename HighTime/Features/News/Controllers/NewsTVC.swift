@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 import PKHUD
 import RxSwift
-import MMProgressHUD
 
 
 class NewsTVC: UITableViewController {
@@ -38,8 +37,7 @@ class NewsTVC: UITableViewController {
         self.newsVM.getNews { (error) in
             if error != nil {
                 HUD.hide()
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
+                Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
             }
         }
         

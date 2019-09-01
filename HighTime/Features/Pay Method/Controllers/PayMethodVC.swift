@@ -14,12 +14,10 @@ class PayMethodVC: UIViewController {
 
     let payVM = PayViewModel()
     var levelId = Int()
-    var url: String = ""
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPayURL(levelId: levelId)
     }
 
     
@@ -32,9 +30,9 @@ class PayMethodVC: UIViewController {
         }
             
             self.payVM.payBehaviorRelay.skip(1).subscribe(onNext: { (url) in
-                self.url = url.url
-                print(self.url)
                 HUD.hide()
+                guard let url = URL(string: url.url) else { return }
+                UIApplication.shared.open(url)
             }, onError: { (error) in
                 print(error.localizedDescription)
                 HUD.hide()
@@ -44,25 +42,19 @@ class PayMethodVC: UIViewController {
     
 
     @IBAction func mastercard(_ sender: UIButton) {
-  
-        guard let url = URL(string: self.url) else { return }
-        UIApplication.shared.open(url)
-    
+        getPayURL(levelId: levelId)
     }
     
     @IBAction func visa(_ sender: Any) {
-        guard let url = URL(string: self.url) else { return }
-        UIApplication.shared.open(url)
+        getPayURL(levelId: levelId)
     }
  
     @IBAction func elsom(_ sender: Any) {
-        guard let url = URL(string: self.url) else { return }
-        UIApplication.shared.open(url)
+        getPayURL(levelId: levelId)
     }
     
     @IBAction func umai(_ sender: Any) {
-        guard let url = URL(string: self.url) else { return }
-        UIApplication.shared.open(url)
+        getPayURL(levelId: levelId)
     }
     
     @IBAction func pay24(_ sender: Any) {

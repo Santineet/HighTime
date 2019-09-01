@@ -9,20 +9,20 @@
 import UIKit
 import ObjectMapper
 
-struct LogInModel: Mappable {
-
-    var user_token: String?
-    var user_name: String?
-    var user_email: String?
+class LogInModel: NSObject, Mappable {
     
-    init?(map: Map) {
-        
+    var result = LoginSuccess()
+    var user = LoginUserModel()
+    var message: String = ""
+    var error: String = ""
+    required convenience init?(map: Map) {
+        self.init()
     }
-
-    mutating func mapping(map: Map) {
-        user_token <- map["user_token"]
-        user_name <- map["fullName"]
-        user_email <- map["email"]
-
+    func mapping(map: Map) {
+        result <- map["result"]
+        user <- map["user"]
+        message <- map["message"]
+        error <- map["error"]
     }
+    
 }

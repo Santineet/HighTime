@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MMProgressHUD
 import PKHUD
 
 class AddReviewVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
@@ -24,7 +23,7 @@ class AddReviewVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     //    MARK:    Variables
     //    MARK:    Переменные
-    var addReviewVM = LoginViewModel()
+    var addReviewVM = AddReviewViewModel()
     var selectedImage: UIImage?
     
     override func viewDidLoad() {
@@ -71,8 +70,8 @@ class AddReviewVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         if UserDefaults.standard.value(forKey: "userToken") == nil {return}
         guard let text = self.commentReview.text, self.commentReview.text != " Введите текст..." else {
             self.doneButton.isEnabled = true
-            MMProgressHUD.show()
-            MMProgressHUD.dismissWithError("Заполните все поля")
+           HUD.hide()
+            Alert.displayAlert(title: "", message: "Заполните все поля", vc: self)
             return
         }
         
@@ -81,15 +80,18 @@ class AddReviewVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         
         addReviewVM.postReview(params: params as [String : Any], image: self.selectedImage) { (result,error)  in
             if error != nil {
-                MMProgressHUD.show()
-                MMProgressHUD.dismissWithError(error?.localizedDescription)
+                HUD.hide()
                 self.doneButton.isEnabled = true
+                Alert.displayAlert(title: "Ошибка", message: error?.localizedDescription ?? "Для получения данных требуется подключение к интернету", vc: self)
             } else if result != nil {
                 HUD.hide()
-                Alert.displayAlert(title: "Внимание", message: "Ваш отзыв добавлен", vc: self)
+                guard let navCont = self.navigationController else { return }
+                Alert.alertForTests(title: "", message: "Ваш отзыв добавлен", vc: self, navCont: navCont)
             }
         }
     }
+    
+    
   
     //    MARK:    Сlicked the addReview Image to select a photo for the profile.
     //    MARK:    Нажатие на изображение отзыва, чтобы выбрать фотографию для отзыва.
