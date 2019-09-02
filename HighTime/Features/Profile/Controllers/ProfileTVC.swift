@@ -34,10 +34,8 @@ class ProfileTVC: UITableViewController {
                 print(error?.localizedDescription ?? "error")
             }
         }
-        HUD.hide()
         self.profileVM.myLevelsBehaviorRelay.skip(1).subscribe(onNext: { (myLevels) in
             self.myLevels = myLevels
-            print(self.myLevels[1].name)
             self.setupMyLevels()
         }).disposed(by: disposeBag)
         
@@ -74,14 +72,14 @@ class ProfileTVC: UITableViewController {
         }
         
         self.tableView.reloadData()
-        
+        HUD.hide()
     }
     
     
     //MARK: numberOfRowsInSection
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1 + levelNames.count
+        return 2 + levelNames.count
     }
     
     //MARK: cellForRowAt
@@ -94,6 +92,10 @@ class ProfileTVC: UITableViewController {
             cell.userEmail.text = email
             
             return cell
+        } else if indexPath.row == levelNames.count + 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LogOutTVCell", for: indexPath) as! LogOutTVCell
+            return cell
+            
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyLevelsTVCell", for: indexPath) as! MyLevelsTVCell
@@ -109,10 +111,11 @@ class ProfileTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 186
+        } else if indexPath.row == levelNames.count + 1 {
+            return 115
         }
         return 65
     }
-    
     
     
 }

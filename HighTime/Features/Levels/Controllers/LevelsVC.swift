@@ -128,16 +128,15 @@ class LevelsVC: UIViewController {
         let levelInfoTVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LevelInfoTVC") as! LevelInfoTVC
 
         let oldContent = levels[sender.tag].content
-        var newContent = oldContent.replacingOccurrences(of: "&amp;", with: "")
+        var newContent = oldContent.replacingOccurrences(of: "&amp;", with: " ")
         newContent = newContent.replacingOccurrences(of: "amp;", with: "")
-        newContent = newContent.replacingOccurrences(of: "bull;", with: "")
+        newContent = newContent.replacingOccurrences(of: "bull;", with: " ")
         newContent = newContent.replacingOccurrences(of: "nbsp;", with: "")
         levels[sender.tag].content = newContent
 
         levelInfoTVC.levelInfo = levels[sender.tag]
             
         navigationController?.pushViewController(levelInfoTVC, animated: true)
-        
     }
 
     

@@ -32,9 +32,24 @@ class ProfileRepository: NSObject {
             return Disposables.create()
             
         })
-        
-        
-        
+    }
+
+    
+    func getUserInfo() -> Observable<UserInfoModel> {
+        return Observable.create({ (observer) -> Disposable in
+            ServiceManager.sharedInstance.getUserInfo(completion: { (response, error) in
+                guard let jsonArray = response as? [String:Any] else { return }
+                guard let userInfo = Mapper<UserInfoModel>().map(JSON: jsonArray) else {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    return
+                }
+                observer.onNext(userInfo)
+                observer.onCompleted()
+            })
+            
+            return Disposables.create()
+        })
     }
     
 }
+

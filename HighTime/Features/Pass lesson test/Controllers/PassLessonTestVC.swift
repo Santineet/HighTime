@@ -76,6 +76,7 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
         question.content = question.content.replacingOccurrences(of: "amp;", with: " ")
         question.content = question.content.replacingOccurrences(of: "nbsp;", with: " ")
         question.content = question.content.replacingOccurrences(of: "rsquo;", with: " ")
+         question.content = question.content.replacingOccurrences(of: "  ", with: " ")
         
         cell.content.text = question.content
         
@@ -83,9 +84,9 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
         for i in 0..<5{
             if i < question.answers.count {
                 
-                var buttonText = question.answers[i].name .replacingOccurrences(of: "&amp;", with: "")
-                buttonText = buttonText.replacingOccurrences(of: "amp;", with: "")
-                buttonText = buttonText.replacingOccurrences(of: "rsquo;", with: "")
+                var buttonText = question.answers[i].name.replacingOccurrences(of: "&amp;", with: " ")
+                buttonText = buttonText.replacingOccurrences(of: "amp;", with: " ")
+                buttonText = buttonText.replacingOccurrences(of: "rsquo;", with: " ")
                 buttonText = buttonText.replacingOccurrences(of: "  ", with: " ")
                 
                 cell.answersButtonArray[i].setTitle(buttonText, for: .normal)

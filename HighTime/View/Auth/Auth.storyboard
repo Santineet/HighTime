@@ -87,7 +87,7 @@
                                     <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVl-DM-lBj">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_large-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="2UW-C6-Jzt">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="2UW-C6-Jzt">
                                                 <rect key="frame" x="40" y="40" width="240" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="5mw-Hr-yr7"/>
@@ -194,7 +194,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="Kda-xG-Jb9" kind="push" id="M96-Tc-a1b"/>
+                                                    <segue destination="yjm-wD-kCl" kind="push" id="sx0-KO-COd"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -314,7 +314,7 @@
                                     <action selector="logInButton:" destination="kVm-Lu-dth" eventType="touchUpInside" id="kn7-vO-3XD"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_large-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="bVJ-De-meG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoPNG.png" translatesAutoresizingMaskIntoConstraints="NO" id="bVJ-De-meG">
                                 <rect key="frame" x="40" y="60" width="240" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="XAw-zv-2VO"/>
@@ -376,23 +376,49 @@
             </objects>
             <point key="canvasLocation" x="774.375" y="-183.80281690140845"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="fBl-Qf-pZL">
+        <!--AgreementTVC-->
+        <scene sceneID="hCg-PH-SPr">
             <objects>
-                <viewController id="Kda-xG-Jb9" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oBq-1K-O8F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="4000"/>
+                <tableViewController storyboardIdentifier="AgreementTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yjm-wD-kCl" customClass="AgreementTVC" customModule="HighTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sbC-Ry-Zm8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-D9-EcO">
-                                <rect key="frame" x="0.0" y="20" width="320" height="3980"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="de5-a4-ocj">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="4000"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10000" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARz-PK-8kg">
-                                                <rect key="frame" x="10" y="33" width="300" height="4240.5"/>
-                                                <mutableString key="text">1. Общие положения 
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="firstCell" rowHeight="40" id="0NK-Qt-V6z">
+                                <rect key="frame" x="0.0" y="28" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0NK-Qt-V6z" id="UGc-La-X1o">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ДОГОВОР - ОФЕРТА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylu-GX-hNQ">
+                                            <rect key="frame" x="30" y="10" width="260" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="H7w-yz-hwq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                            <color key="textColor" red="0.5018310546875" green="0.5060875415802002" blue="0.51369422674179077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ylu-GX-hNQ" firstAttribute="top" secondItem="UGc-La-X1o" secondAttribute="top" constant="10" id="0QU-NA-3pJ"/>
+                                        <constraint firstItem="Ylu-GX-hNQ" firstAttribute="leading" secondItem="UGc-La-X1o" secondAttribute="leading" constant="30" id="cGc-Kb-W5o"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ylu-GX-hNQ" secondAttribute="trailing" constant="30" id="f8e-FW-ALK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CellForLabel" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="secondCell" rowHeight="455" id="oAB-ww-WiI" customClass="CellForLabel" customModule="HighTime" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="68" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oAB-ww-WiI" id="cBi-wj-lNJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="454.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfe-dP-k97">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="454.5"/>
+                                            <mutableString key="text">1. Общие положения 
 1.1. Настоящий Договор является официальным предложением ОсОО High time   (в дальнейшем «Исполнитель») для полностью дееспособного физического (далее – «Студент»), которое примет настоящее предложение, на указанных ниже условиях. 
 1.2. В соответствии с  Гражданским Кодексом КР, в случае принятия изложенных ниже условий и оплаты услуг юридическое или физическое лицо, производящее акцепт этой оферты, становится Студентом   
 1.3. Моментом полного и безоговорочного принятия Студентом предложения Исполнителя заключить Договор оферты  считается факт подтверждения готовности совершить оплату услуги Исполнителя, при платеже на сайте http://htlife.biz/ru.                     
@@ -447,58 +473,37 @@ http://htlife.biz/ru . Данная информация не используе
 10. Контактные данные 
 +996 505 444 415 
 +996 755 444 459
-e-mail: htlife.2020@gmail.com
-</mutableString>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.42745098039215684" green="0.43137254901960786" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ДОГОВОР - ОФЕРТА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzb-md-4Lj">
-                                                <rect key="frame" x="10" y="4" width="300" height="23"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                                <color key="textColor" red="0.42745098039215684" green="0.43137254901960786" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Gzb-md-4Lj" firstAttribute="top" secondItem="de5-a4-ocj" secondAttribute="top" constant="4" id="9OU-TO-sH6"/>
-                                            <constraint firstItem="ARz-PK-8kg" firstAttribute="leading" secondItem="de5-a4-ocj" secondAttribute="leading" constant="10" id="Ato-AG-s9h"/>
-                                            <constraint firstItem="Gzb-md-4Lj" firstAttribute="leading" secondItem="de5-a4-ocj" secondAttribute="leading" constant="10" id="IaR-JG-bhd"/>
-                                            <constraint firstAttribute="height" constant="4000" id="JBm-x7-6V5"/>
-                                            <constraint firstAttribute="trailing" secondItem="ARz-PK-8kg" secondAttribute="trailing" constant="10" id="aH2-C2-WnH"/>
-                                            <constraint firstAttribute="trailing" secondItem="Gzb-md-4Lj" secondAttribute="trailing" constant="10" id="ivf-PF-pUK"/>
-                                            <constraint firstItem="ARz-PK-8kg" firstAttribute="top" secondItem="de5-a4-ocj" secondAttribute="top" constant="33" id="zRq-lT-OGZ"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="de5-a4-ocj" secondAttribute="bottom" constant="-20" id="F1y-RF-H0q"/>
-                                    <constraint firstAttribute="trailing" secondItem="de5-a4-ocj" secondAttribute="trailing" id="Ken-h4-ics"/>
-                                    <constraint firstItem="de5-a4-ocj" firstAttribute="leading" secondItem="TO1-D9-EcO" secondAttribute="leading" id="vJ3-C8-bcs"/>
-                                    <constraint firstItem="de5-a4-ocj" firstAttribute="top" secondItem="TO1-D9-EcO" secondAttribute="top" id="y0u-Nw-voD"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="TO1-D9-EcO" firstAttribute="leading" secondItem="PU1-x9-75e" secondAttribute="leading" id="5uh-kb-V4V"/>
-                            <constraint firstItem="de5-a4-ocj" firstAttribute="width" secondItem="oBq-1K-O8F" secondAttribute="width" id="NSO-Fm-QNh"/>
-                            <constraint firstItem="PU1-x9-75e" firstAttribute="trailing" secondItem="TO1-D9-EcO" secondAttribute="trailing" id="a8H-mD-mMy"/>
-                            <constraint firstItem="PU1-x9-75e" firstAttribute="bottom" secondItem="TO1-D9-EcO" secondAttribute="bottom" id="ebQ-qS-k3l"/>
-                            <constraint firstItem="TO1-D9-EcO" firstAttribute="top" secondItem="PU1-x9-75e" secondAttribute="top" id="qrd-Ia-tf5"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="PU1-x9-75e"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Mqw-38-yNm"/>
-                    <size key="freeformSize" width="320" height="4000"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EA1-Mh-35x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+e-mail: htlife.2020@gmail.com</mutableString>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.5018310546875" green="0.5060875415802002" blue="0.51369422674179077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="wfe-dP-k97" secondAttribute="bottom" id="2WK-1C-HHa"/>
+                                        <constraint firstItem="wfe-dP-k97" firstAttribute="top" secondItem="cBi-wj-lNJ" secondAttribute="top" id="Kqx-Bh-BEk"/>
+                                        <constraint firstAttribute="trailing" secondItem="wfe-dP-k97" secondAttribute="trailing" constant="10" id="fsm-ZZ-QAb"/>
+                                        <constraint firstItem="wfe-dP-k97" firstAttribute="leading" secondItem="cBi-wj-lNJ" secondAttribute="leading" constant="10" id="gT9-ro-9cP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="agreementText" destination="wfe-dP-k97" id="6pU-sq-48I"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yjm-wD-kCl" id="z9H-3k-i2o"/>
+                            <outlet property="delegate" destination="yjm-wD-kCl" id="2fL-a8-zDh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="spE-Er-PQ5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAA-sA-Pxn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2004.375" y="-196.47887323943661"/>
+            <point key="canvasLocation" x="1562" y="601"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo_large-2.png" width="423" height="250"/>
+        <image name="LogoPNG.png" width="878" height="512"/>
     </resources>
 </document>

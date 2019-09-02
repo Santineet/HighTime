@@ -10,7 +10,9 @@ import UIKit
 import Alamofire
 import SDWebImage
 
+
 class NewsInfoTVC: UITableViewController {
+    
     
     //MARK: Outlets
     @IBOutlet weak var newsImage: UIImageView!
@@ -24,7 +26,9 @@ class NewsInfoTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNewsInfo()
+        self.tableView.allowsSelection = false
     }
+    
     
     
     //MARK:  Methods
@@ -77,8 +81,15 @@ class NewsInfoTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsInfoTVCell", for: indexPath) as! NewsInfoTVCell
+           
+            var text = newsId.contentNews.replacingOccurrences(of: "&amp;", with: " ")
+            text = text.replacingOccurrences(of: "amp;", with: " ")
+            text = text.replacingOccurrences(of: "rsquo;", with: " ")
+            text = text.replacingOccurrences(of: "nbsp;", with: " ")
+            text = text.replacingOccurrences(of: "  ", with: " ")
+            
             cell.titleNews.text = self.newsId.titleNew
-            cell.contentNews.text = self.newsId.contentNews
+            cell.contentNews.text = text
             
             return cell
         } else if indexPath.row == 1 {
@@ -92,7 +103,8 @@ class NewsInfoTVC: UITableViewController {
         let imageSmall = detailsNews.imageSmall
         
         cell.titleNews.text = detailsNews.titleNew
-        cell.contentNews.text = detailsNews.contentNews
+        cell.contentNews.text = detailsNews.messageNews
+        
         cell.imageInfoNews.sd_setImage(with: URL(string: imageSmall), placeholderImage: UIImage(named: ""))
         
         return cell
@@ -124,3 +136,16 @@ class NewsInfoTVC: UITableViewController {
     
 }
 
+extension String {
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
+}

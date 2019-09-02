@@ -31,6 +31,7 @@ class ReviewListTVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeBehaviorRaplays()
+        self.tableView.allowsSelection = false
     }
     
     

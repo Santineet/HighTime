@@ -14,7 +14,7 @@ class ProfileViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let myLevelsBehaviorRelay = BehaviorRelay<[LevelsModel]>(value: [])
-    
+    let userInfoBehaviorRelay = BehaviorRelay<UserInfoModel>(value: UserInfoModel())
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
@@ -31,6 +31,19 @@ class ProfileViewModel: NSObject {
             completion(NSError.init(message: "Нет соединения"))
         }
     }
+    
+    func getUserInfo(completion: @escaping (Error?) -> ()) {
+        if isConnnected() == true {
+            self.repository.getUserInfo().subscribe(onNext: { (userInfo) in
+                self.userInfoBehaviorRelay.accept(userInfo)
+            }, onError: { (error) in
+                self.errorBehaviorRelay.accept(error)
+            }).disposed(by: disposeBag)
+        } else {
+            completion(NSError.init(message: "Нет соединения"))
+        }
+    }
+    
     
     
    

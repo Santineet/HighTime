@@ -210,5 +210,22 @@ class ServiceManager: NSObject {
     }
     
     
+    func getUserInfo(completion: @escaping Completion){
+        let token = UserDefaults.standard.value(forKey: "userToken")
+        let header: HTTPHeaders = ["token": "\(token ?? "")"]
+        
+        let userRequestURL = URL(string: "http://apiprod.htlife.biz/api/user/info")
+        Alamofire.request(userRequestURL!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
+            switch responseJSON.result {
+            case .success:
+                completion(responseJSON.result.value, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
+
+    
     
 }
