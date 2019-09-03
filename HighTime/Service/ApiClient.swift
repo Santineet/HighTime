@@ -3,13 +3,6 @@ import UIKit
 import Alamofire
 import ObjectMapper
 
-//#if DEBUG
-//let baseUrl = ""
-//#else
-//let baseUrl = ""
-//#endif
-
-
 
 class ServiceManager: NSObject {
     

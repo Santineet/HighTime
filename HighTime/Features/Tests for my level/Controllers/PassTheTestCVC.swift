@@ -138,32 +138,44 @@ class PassTheTestCVC: UICollectionViewController {
         }
         
         let token = UserDefaults.standard.value(forKey: "userToken") as! String
-        guard let navCont = navigationController else {return}
 
         if corectAnswersNum < 4 {
-            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Alphabet", vc: self, navCont: navCont)
+            self.alert(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Alphabet")
             UserDefaults.standard.set(0, forKey: "\(token)myLevel")
         } else if corectAnswersNum >= 4 && corectAnswersNum < 7 {
-             Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Beginner", vc: self, navCont: navCont)
+             self.alert(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Beginner")
             UserDefaults.standard.set(1, forKey: "\(token)myLevel")
         } else if corectAnswersNum >= 7 && corectAnswersNum < 10 {
-            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Pre - Intermediate", vc: self, navCont: navCont)
+            self.alert(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Pre - Intermediate")
             UserDefaults.standard.set(2, forKey: "\(token)myLevel")
         } else if corectAnswersNum >= 10 && corectAnswersNum < 12 {
-            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Intermediate", vc: self, navCont: navCont)
+            self.alert(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Intermediate")
             UserDefaults.standard.set(3, forKey: "\(token)myLevel")
         } else if corectAnswersNum == 12 {
-            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Upper - Intermediate", vc: self, navCont: navCont)
+            self.alert(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Upper - Intermediate")
             UserDefaults.standard.set(4, forKey: "\(token)myLevel")
         } else if corectAnswersNum > 12 {
-            Alert.alertForTests(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Advanced", vc: self, navCont: navCont)
             UserDefaults.standard.set(5, forKey: "\(token)myLevel")
+            self.alert(title: "", message: "Количество правильныз ответов: \(corectAnswersNum)  Ваш уровень Advanced")
         }
         
         let levelVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LevelsVC") as! LevelsVC
          navigationController?.pushViewController(levelVC, animated: true)
         
     }
+    
+    func alert(title: String, message: String){
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .cancel) { (alert) in
+            let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LevelsVC") as! LevelsVC
+            self.navigationController?.pushViewController(vc, animated: true)
+
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 
     
 }
