@@ -12,6 +12,8 @@ import ObjectMapper
 class PaymentURLModel: NSObject, Mappable {
     
     var url: String = ""
+    var message: String = ""
+    var result: String = ""
     
     required convenience init?(map: Map) {
         self.init()
@@ -19,6 +21,8 @@ class PaymentURLModel: NSObject, Mappable {
     
     func mapping(map: Map) {
         url <- map["payment_link"]
+        message <- map["Message"]
+        result <- map["Result"]
     }
     
     

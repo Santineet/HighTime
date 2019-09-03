@@ -16,7 +16,6 @@
 		2E07F6E82307C1A6005B4731 /* Group.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E07F6E52307C1A4005B4731 /* Group.png */; };
 		2E07F6E92307C1A6005B4731 /* Group 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E07F6E62307C1A5005B4731 /* Group 3.png */; };
 		2E07F6EA2307C1A6005B4731 /* Group 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E07F6E72307C1A5005B4731 /* Group 2.png */; };
-		2E07F6EC2307CED1005B4731 /* ToContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07F6EB2307CED1005B4731 /* ToContactUsVC.swift */; };
 		2E07F6EE2308260F005B4731 /* NewsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07F6ED2308260F005B4731 /* NewsTVC.swift */; };
 		2E07F6F123082AAE005B4731 /* dateIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E07F6F023082AAD005B4731 /* dateIcon.png */; };
 		2E07F6F42308311F005B4731 /* NewsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07F6F32308311F005B4731 /* NewsTVCell.swift */; };
@@ -83,6 +82,7 @@
 		2E64FDC82316574D0095F326 /* PassLessonTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E64FDC72316574D0095F326 /* PassLessonTestVC.swift */; };
 		2E64FDCB231658120095F326 /* PassLessonTestTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E64FDCA231658120095F326 /* PassLessonTestTVCell.swift */; };
 		2E64FDCD2316BF220095F326 /* PaymentWithPromocodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E64FDCC2316BF210095F326 /* PaymentWithPromocodeModel.swift */; };
+		2E66429F231E4CB700601B7D /* TestWithImagesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66429E231E4CB700601B7D /* TestWithImagesTVCell.swift */; };
 		2E6BFC702318127200B6F021 /* umai.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6BFC6E2318127000B6F021 /* umai.png */; };
 		2E6BFC712318127200B6F021 /* visa.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6BFC6F2318127100B6F021 /* visa.png */; };
 		2E6BFC732318128400B6F021 /* pay24.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6BFC722318128400B6F021 /* pay24.png */; };
@@ -208,7 +208,6 @@
 		2E07F6E52307C1A4005B4731 /* Group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Group.png; sourceTree = "<group>"; };
 		2E07F6E62307C1A5005B4731 /* Group 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group 3.png"; sourceTree = "<group>"; };
 		2E07F6E72307C1A5005B4731 /* Group 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group 2.png"; sourceTree = "<group>"; };
-		2E07F6EB2307CED1005B4731 /* ToContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToContactUsVC.swift; sourceTree = "<group>"; };
 		2E07F6ED2308260F005B4731 /* NewsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVC.swift; sourceTree = "<group>"; };
 		2E07F6F023082AAD005B4731 /* dateIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dateIcon.png; sourceTree = "<group>"; };
 		2E07F6F32308311F005B4731 /* NewsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTVCell.swift; sourceTree = "<group>"; };
@@ -275,6 +274,7 @@
 		2E64FDC72316574D0095F326 /* PassLessonTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassLessonTestVC.swift; sourceTree = "<group>"; };
 		2E64FDCA231658120095F326 /* PassLessonTestTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassLessonTestTVCell.swift; sourceTree = "<group>"; };
 		2E64FDCC2316BF210095F326 /* PaymentWithPromocodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWithPromocodeModel.swift; sourceTree = "<group>"; };
+		2E66429E231E4CB700601B7D /* TestWithImagesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWithImagesTVCell.swift; sourceTree = "<group>"; };
 		2E6BFC6E2318127000B6F021 /* umai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = umai.png; sourceTree = "<group>"; };
 		2E6BFC6F2318127100B6F021 /* visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = visa.png; sourceTree = "<group>"; };
 		2E6BFC722318128400B6F021 /* pay24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay24.png; sourceTree = "<group>"; };
@@ -570,7 +570,6 @@
 		2E40ACF5230A8FBD001D08F2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2E07F6EB2307CED1005B4731 /* ToContactUsVC.swift */,
 				2EEA1457231D4078003672AC /* ToContactUs.swift */,
 			);
 			path = Controllers;
@@ -707,6 +706,7 @@
 			isa = PBXGroup;
 			children = (
 				2E64FDCA231658120095F326 /* PassLessonTestTVCell.swift */,
+				2E66429E231E4CB700601B7D /* TestWithImagesTVCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1438,6 +1438,7 @@
 				2E6D5F252303E899008A8B9F /* IQToolbar.swift in Sources */,
 				2E6BFD0B2319507200B6F021 /* Alert.swift in Sources */,
 				2EB8B69E23054BC00014921E /* LogInModel.swift in Sources */,
+				2E66429F231E4CB700601B7D /* TestWithImagesTVCell.swift in Sources */,
 				2E64FDCB231658120095F326 /* PassLessonTestTVCell.swift in Sources */,
 				2E57706E230BC8500062DAF6 /* AddReviewViewModel.swift in Sources */,
 				2E06D252230EAD2E00B753AC /* TestRepository.swift in Sources */,
@@ -1467,7 +1468,6 @@
 				2EE79FA323153E830080D871 /* VideoTutorialByLessonIdModel.swift in Sources */,
 				2E6D5F202303E899008A8B9F /* Reachability.swift in Sources */,
 				2E6D5F302303E899008A8B9F /* IQUIView+Hierarchy.swift in Sources */,
-				2E07F6EC2307CED1005B4731 /* ToContactUsVC.swift in Sources */,
 				2E6D5F2F2303E899008A8B9F /* IQUITextFieldView+Additions.swift in Sources */,
 				2EB8B694230409CD0014921E /* RegistrationVC.swift in Sources */,
 				2E6BFC9223191E7C00B6F021 /* ProfileViewModel.swift in Sources */,

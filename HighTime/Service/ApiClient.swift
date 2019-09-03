@@ -220,5 +220,20 @@ class ServiceManager: NSObject {
     
 
     
+    func paymentWithPay24(levelId: Int, completion: @escaping Completion) {
+        let token = UserDefaults.standard.value(forKey: "userToken")
+        let header: HTTPHeaders = ["token": "\(token ?? "")"]
+        guard let lessonTutorialURL = URL(string: "http://apitest.htlife.biz/api/user/payment/buy-with-balance/\(levelId)") else { return }
+        Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
+            switch responseJSON.result {
+            case .success:
+                completion(responseJSON.result.value, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
     
 }

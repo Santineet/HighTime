@@ -13,7 +13,8 @@ import RxCocoa
 class PayViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-    let payBehaviorRelay = BehaviorRelay<PaymentURLModel>(value: PaymentURLModel())
+    let payURLBehaviorRelay = BehaviorRelay<PaymentURLModel>(value: PaymentURLModel())
+    let pay24BehaviorRelay = BehaviorRelay<PaymentURLModel>(value: PaymentURLModel())
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
@@ -22,7 +23,7 @@ class PayViewModel: NSObject {
     func getPayURL(levelId: Int,  completion: @escaping (Error?) -> ()){
         if isConnnected() == true {
             self.repository.getPaymentURL(levelId: levelId).subscribe(onNext: { (url) in
-                self.payBehaviorRelay.accept(url)
+                self.payURLBehaviorRelay.accept(url)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
@@ -30,6 +31,19 @@ class PayViewModel: NSObject {
             completion(NSError.init(message: "Нет соединения"))
         }
     }
+    
+    func getPay24(levelId: Int,  completion: @escaping (Error?) -> ()){
+        if isConnnected() == true {
+            self.repository.getPay24(levelId: levelId).subscribe(onNext: { (message) in
+                self.pay24BehaviorRelay.accept(message)
+            }, onError: { (error) in
+                self.errorBehaviorRelay.accept(error)
+            }).disposed(by: disposeBag)
+        } else {
+            completion(NSError.init(message: "Нет соединения"))
+        }
+    }
+    
     
     func isConnnected() -> Bool{
         do {

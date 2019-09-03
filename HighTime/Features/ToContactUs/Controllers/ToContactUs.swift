@@ -26,7 +26,7 @@ class ToContactUs: UITableViewController {
         guard let number = self.number.text, self.number.text?.count != 0 else { return }
         let sendMessage = "Hello, I want to get advice! my data: \(name), \(number)"
         let encodedData = sendMessage.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
-        let urlString = "https://wa.me/996555490390?text=\(encodedData!)"
+        let urlString = "https://wa.me/996505444415?text=\(encodedData!)"
         guard let url  = NSURL(string: urlString) else { return }
         
         if UIApplication.shared.canOpenURL(url as URL)
@@ -42,6 +42,16 @@ class ToContactUs: UITableViewController {
     }
     
     @IBAction func facebook(_ sender: Any) {
+   
+        let url  = NSURL(string: "https://m.facebook.com/hightime.kg/")
+        if UIApplication.shared.canOpenURL(url! as URL)
+        {
+            UIApplication.shared.open(url! as URL)
+        }
+        else
+        {
+            notHaveAppAlert(app: "Facebook")
+        }
     }
     
     @IBAction func instagram(_ sender: Any) {
@@ -58,7 +68,7 @@ class ToContactUs: UITableViewController {
     
     
     @IBAction func whatsapp(_ sender: Any) {
-        let url  = NSURL(string: "https://wa.me/996555490390")
+        let url  = NSURL(string: "https://wa.me/996505444415")
         if UIApplication.shared.canOpenURL(url! as URL)
         {
             UIApplication.shared.open(url! as URL)
@@ -69,9 +79,16 @@ class ToContactUs: UITableViewController {
         }
         
     }
-    
     @IBAction func youtube(_ sender: Any) {
-   
+        let url  = NSURL(string: "https://www.youtube.com/channel/UCkzrjgeGDtRNRwA-5dQpX3w")
+        if UIApplication.shared.canOpenURL(url! as URL)
+        {
+            UIApplication.shared.open(url! as URL)
+        }
+        else
+        {
+            notHaveAppAlert(app: "YouTube")
+        }
     }
     
  

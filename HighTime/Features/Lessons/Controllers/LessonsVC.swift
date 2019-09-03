@@ -13,6 +13,7 @@ import AVKit
 
 class LessonsVC: UIViewController {
     
+    @IBOutlet weak var lessonNumberImage: UILabel!
     @IBOutlet weak var lessonNumber: UILabel!
     @IBOutlet weak var viewForCells: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -56,6 +57,7 @@ class LessonsVC: UIViewController {
     }
     
     func setupView(){
+        
         if lessonId <= 27 {
             self.lessonNumber.text = "Буква \(self.lesson.name) "
         } else {
@@ -64,6 +66,9 @@ class LessonsVC: UIViewController {
         var contentRect = CGRect.zero
         contentRect = contentRect.union(viewForCells.frame)
         self.scrollView.contentSize = contentRect.size
+        
+        let lessonName = self.lesson.name.replacingOccurrences(of: "Урок ", with: "")
+        self.lessonNumberImage.text = lessonName
     }
     
     

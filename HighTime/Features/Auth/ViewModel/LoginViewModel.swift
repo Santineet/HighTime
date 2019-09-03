@@ -44,6 +44,21 @@ class LoginViewModel: NSObject {
         }
     }
     
+    func alertRegister(title: String, message: String, vc: UIViewController, completion: @escaping (String) -> ()){
+       
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "Да", style: .default) { (UIAlertAction) in
+
+            completion("OK")
+        }
+        let cancelAction = UIAlertAction(title: "Нет", style: .default) { (UIAlertAction) in
+            completion("Cancel")
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(OKAction)
+        vc.present(alertController, animated: true, completion: nil)
+    }
+    
     
     
     func isConnnected() -> Bool{

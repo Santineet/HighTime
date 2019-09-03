@@ -28,6 +28,7 @@ class ProfileTVC: UITableViewController {
     }
     
     func getMyLevels(){
+        HUD.hide(afterDelay: 3)
         self.profileVM.getLevels { (error) in
             if error != nil {
                 HUD.hide()

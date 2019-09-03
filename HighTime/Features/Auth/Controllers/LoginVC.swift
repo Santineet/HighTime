@@ -24,13 +24,25 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Alert.displayAlert(title: "", message: "Для Кыргызстана вход по номеру телефона либо по Эл. адресу для остальных по Эл. адресу", vc: self)
     }
     
     @IBAction func logInButton(_ sender: Any) {
         HUD.show(.progress)
         
-        guard let emailOrNumber = self.emailOrNumber.text else { return }
+        guard var emailOrNumber = self.emailOrNumber.text else { return }
         guard let password = self.password.text else { return }
+        
+        let numberPhone = Int(emailOrNumber)
+        if numberPhone != nil {
+            if emailOrNumber.first == "0" {
+                emailOrNumber.remove(at: emailOrNumber.startIndex)
+                emailOrNumber = "996" + emailOrNumber
+            } else if emailOrNumber.count != 12 {
+                Alert.displayAlert(title: "Ошибка", message: "Не верно введен номер телефона", vc: self)
+            }
+            
+        }
         
         if(!emailOrNumber.isEmpty && !password.isEmpty){
             self.loginVM.login(emailOrNumber: emailOrNumber, password: password) { (error) in
