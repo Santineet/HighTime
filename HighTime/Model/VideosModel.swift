@@ -19,6 +19,8 @@ class VideosModel: Mappable {
     var lessonId = Int()
     var urlHighVideo: String = ""
     var urlLowVideo: String = ""
+    var youTubeURL: String = ""
+    
     var tests = [LevelTestsModel]()
     
     required convenience init?(map: Map) {
@@ -34,6 +36,7 @@ class VideosModel: Mappable {
         lessonId <- map["lesson_id"]
         urlHighVideo <- map["url_high"]
         urlLowVideo <- map["url_low"]
+        youTubeURL <- map["url_youtube"]
         tests <- map["tests"]
     }
 }

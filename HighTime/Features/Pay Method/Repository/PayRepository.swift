@@ -30,6 +30,7 @@ class PayRepository: NSObject {
     func getPay24(levelId: Int) -> Observable<PaymentURLModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.paymentWithPay24(levelId: levelId, completion: { (response, error) in
+                print(response)
                 guard let jsonArray = response as? [String:Any] else { return }
                 guard let message = Mapper<PaymentURLModel>().map(JSON: jsonArray) else {
                     observer.onError(error ?? Constant.BACKEND_ERROR)

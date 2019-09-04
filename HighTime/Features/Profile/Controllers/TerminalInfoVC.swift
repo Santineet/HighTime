@@ -12,9 +12,13 @@ class TerminalInfoVC: UIViewController {
 
     @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    var accountNum = "??????"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        accountNumber.text = "Ваш лицевой счет\n" + accountNum
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false

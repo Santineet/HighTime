@@ -17,6 +17,7 @@ class ProfileTVC: UITableViewController {
     let disposeBag = DisposeBag()
     var levelNames = [String]()
     var myLevels = [LevelsModel]()
+    var userInfo = UserInfoModel()
     let colorImagesArray = ["Alphabet":"alphabetColor.png", "Beginner":"beginnerColor.png", "Pre-Intermediate":"preIntermediateColor.png", "Intermediate":"intermediateColor.png", "Upper-Intermediate":"upperIntermediateColor", "Advanced":"advancedColor.png"]
     
     override func viewDidLoad() {
@@ -25,7 +26,10 @@ class ProfileTVC: UITableViewController {
         self.tableView.tableFooterView = UIView()
         HUD.show(.progress)
         getMyLevels()
+        getUserInfo()
     }
+    
+ 
     
     func getMyLevels(){
         HUD.hide(afterDelay: 3)
@@ -43,6 +47,28 @@ class ProfileTVC: UITableViewController {
         self.profileVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             print(error.localizedDescription)
             HUD.hide()
+        }).disposed(by: disposeBag)
+        
+    }
+    
+    func getUserInfo(){
+        HUD.hide(afterDelay: 2.0)
+        self.profileVM.getUserInfo { (error) in
+            if error != nil {
+                HUD.hide()
+                Alert.displayAlert(title: "Ошибка", message: "Для получения данных требуется подключение к интернету", vc: self)
+            }
+        }
+        self.profileVM.userInfoBehaviorRelay.skip(1).subscribe(onNext: { (userInfo) in
+            self.userInfo = userInfo
+            print(userInfo.balance)
+            self.tableView.reloadData()
+
+        }).disposed(by: disposeBag)
+        
+        self.profileVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            HUD.hide()
+            Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
         }).disposed(by: disposeBag)
         
     }
@@ -91,12 +117,14 @@ class ProfileTVC: UITableViewController {
             let email = UserDefaults.standard.value(forKey: "userEmail") as! String
             cell.userName.text = name
             cell.userEmail.text = email
-            
+            cell.personalAccount.text = userInfo.accountNumber
+            cell.balance.text = userInfo.balance
+
             return cell
         } else if indexPath.row == levelNames.count + 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LogOutTVCell", for: indexPath) as! LogOutTVCell
+            cell.balanceInfo.addTarget(self, action: #selector(self.clickedBalansInfo), for: .touchUpInside)
             return cell
-            
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyLevelsTVCell", for: indexPath) as! MyLevelsTVCell
@@ -106,6 +134,13 @@ class ProfileTVC: UITableViewController {
         cell.name.text = levelNames[indexPath.row - 1]
         return cell
         
+    }
+    
+    @objc func clickedBalansInfo(){
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TerminalInfoVC") as! TerminalInfoVC
+        vc.accountNum = userInfo.accountNumber
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: heightForRowAt

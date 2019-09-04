@@ -23,7 +23,7 @@ class MainScreenVC: UIViewController {
     @IBOutlet weak var instruction: UIButton!
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.21, green: 0.48, blue: 0.96, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white ]
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -34,6 +34,10 @@ class MainScreenVC: UIViewController {
             dropShadow(button: button)
             button.addTarget(self, action: #selector(HoldDown(sender:)), for: .touchDown )
         }
+        
+        
+        let token = UserDefaults.standard.value(forKey: "userToken") as! String
+        print(token)        
  
     }
     

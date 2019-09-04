@@ -35,6 +35,8 @@ class LoginViewModel: NSObject {
     func login(emailOrNumber: String,password: String,completion: @escaping (Error?) -> ()) {
         if self.isConnnected() == true {
             self.repository.login(emailOrNumber: emailOrNumber, password: password).subscribe(onNext: { (userInfo) in
+                print(userInfo)
+                print(userInfo.result)
                 self.loginBehaviorRelay.accept(userInfo)
             }, onError: { (error) in
                 self.errorBehaviorRelay.accept(error)

@@ -12,12 +12,13 @@ import ObjectMapper
 class LoginToken: NSObject, Mappable {
     
     var token: String = ""
-    
+    var tokenRegister: String = ""
     required convenience init?(map: Map) {
         self.init()
     }
     
     func mapping(map: Map) {
         token <- map["user_token"]
+        tokenRegister <- map["token"]
     }
 }

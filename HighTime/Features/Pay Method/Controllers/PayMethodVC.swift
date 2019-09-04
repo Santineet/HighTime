@@ -53,13 +53,9 @@ class PayMethodVC: UIViewController {
             HUD.hide()
 
             if message.result == "Error" {
-                
                 Alert.displayAlert(title: "Ошибка", message: message.message , vc: self)
-                
             } else if message.result == "Success" {
-                
-                let levelVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LevelsVC") as! LevelsVC
-                self.navigationController?.popToViewController(levelVC, animated: true)
+                self.alert(title: "", message: "Вы купили уровень!")
             }
             
         }).disposed(by: self.disposeBag)
@@ -69,6 +65,17 @@ class PayMethodVC: UIViewController {
             Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
         }).disposed(by: disposeBag)
         
+    }
+    
+    //MARK: Alert
+    func alert(title: String, message: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .cancel) { (alert) in
+            let levelVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LevelsVC") as! LevelsVC
+            self.navigationController?.popToViewController(levelVC, animated: true)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 

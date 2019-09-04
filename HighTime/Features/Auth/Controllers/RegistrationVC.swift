@@ -89,19 +89,8 @@ class RegistrationVC: UIViewController {
             self.userInfo = userInfo
             
             if userInfo.message == "" {
-                
-                let userName = userInfo.user.name
-                let userEmail = userInfo.user.email
-                let token = userInfo.result.success.token
-                print(userName)
-                print(userEmail)
-                print(token)
-                
-                UserDefaults.standard.setValue(userName, forKey: "userName")
-                UserDefaults.standard.setValue(userEmail, forKey: "userEmail")
-                UserDefaults.standard.setValue(token, forKey: "userToken")
-                HUD.hide()
-                LoginLogoutManager.instance.updateRootVC()
+                self.getNewToken(emailOrNumber: emailOrNumber, password: password)
+           
             }else{
                 HUD.hide()
                 Alert.displayAlert(title: "Ошибка", message: "Такой E-mail уже зарегистрирован", vc: self)
@@ -114,6 +103,37 @@ class RegistrationVC: UIViewController {
         }).disposed(by: disposeBag)
         
     }
+    
+    
+    func getNewToken(emailOrNumber: String, password: String){
+        self.loginVM.login(emailOrNumber: emailOrNumber, password: password) { (error) in
+                HUD.hide()
+        }
+        
+        self.loginVM.loginBehaviorRelay.skip(1).subscribe(onNext: { (userInfo) in
+            if userInfo.error == "" {
+                
+                let userName = userInfo.user.name
+                let userEmail = userInfo.user.email
+                let token = userInfo.result.success.token
+                
+                UserDefaults.standard.setValue(userName, forKey: "userName")
+                UserDefaults.standard.setValue(userEmail, forKey: "userEmail")
+                UserDefaults.standard.setValue(token, forKey: "userToken")
+                HUD.hide()
+                LoginLogoutManager.instance.updateRootVC()
+            }else{
+                HUD.hide()
+            }
+        }).disposed(by: disposeBag)
+        
+        self.loginVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            HUD.hide()
+            Alert.displayAlert(title: "Error", message: error.localizedDescription, vc: self)
+        }).disposed(by: disposeBag)
+
+    }
+    
     
     
 }

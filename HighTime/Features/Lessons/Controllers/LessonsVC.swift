@@ -99,6 +99,7 @@ extension LessonsVC: UITableViewDelegate,UITableViewDataSource {
             passLevelTestVC.test = lesson.videos[indexPath.row]
             navigationController?.pushViewController(passLevelTestVC, animated:true)
         } else {
+            
             let lessonVideoString = lesson.videos[indexPath.row].urlLowVideo.replacingOccurrences(of: " ", with: "%20")
             print(lessonVideoString)
             guard let videoURL = URL(string: "\(lessonVideoString)") else { return }
