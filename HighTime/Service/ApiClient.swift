@@ -159,7 +159,7 @@ class ServiceManager: NSObject {
     func paymentWithPromocode(levelId: Int,promocode: String, completion: @escaping Completion) {
         let token = UserDefaults.standard.value(forKey: "userToken")
         let header: HTTPHeaders = ["token": "\(token ?? "")"]
-        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/by-with-promocode/\(levelId)/\(promocode)") else { return }
+        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/buy-with-promocode/\(levelId)/\(promocode)") else { return }
         
         Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
             switch responseJSON.result {
@@ -174,7 +174,7 @@ class ServiceManager: NSObject {
     func getPaymentUrl(levelId: Int, completion: @escaping Completion){
         let token = UserDefaults.standard.value(forKey: "userToken")
         let header: HTTPHeaders = ["token": "\(token ?? "")"]
-        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/by-with-paybox/\(levelId)") else { return }
+        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/buy-with-paybox/\(levelId)") else { return }
         Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
             switch responseJSON.result {
             case .success:

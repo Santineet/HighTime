@@ -792,11 +792,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTVCell" rowHeight="185" id="m7T-dN-Xlx" customClass="NewsTVCell" customModule="HighTime" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="185"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTVCell" rowHeight="205" id="m7T-dN-Xlx" customClass="NewsTVCell" customModule="HighTime" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="205"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m7T-dN-Xlx" id="Qjq-Od-sXN">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="184.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="204.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="begimai.png" translatesAutoresizingMaskIntoConstraints="NO" id="O5C-uw-VdC">
@@ -826,9 +826,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQg-Yl-Emv">
-                                            <rect key="frame" x="162" y="114" width="142" height="39"/>
+                                            <rect key="frame" x="162" y="114" width="142" height="55"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="39" id="Xbr-ek-cAU"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="Xbr-ek-cAU"/>
                                             </constraints>
                                             <string key="text">Он поделится своими знаниями
 о богатстве. На семинаре
@@ -838,14 +838,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dateIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="FHh-M7-NKN">
-                                            <rect key="frame" x="162" y="166" width="13" height="13"/>
+                                            <rect key="frame" x="162" y="182" width="13" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="13" id="3FP-CD-UId"/>
                                                 <constraint firstAttribute="height" constant="13" id="PQF-Br-Yq7"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17-08-2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts9-8E-w57">
-                                            <rect key="frame" x="191" y="166" width="57.5" height="14"/>
+                                            <rect key="frame" x="191" y="182" width="57.5" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="zsd-yZ-X3B"/>
                                             </constraints>
@@ -888,7 +888,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIr-IU-f9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1879" y="829"/>
+            <point key="canvasLocation" x="1878.75" y="828.16901408450701"/>
         </scene>
         <!--News InfoTVC-->
         <scene sceneID="jHF-t1-1nH">
@@ -3536,11 +3536,11 @@
                                         <rect key="frame" x="0.0" y="30" width="288" height="404"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PassLessonTestTVCell" rowHeight="227" id="Wcm-7O-C0Q" customClass="PassLessonTestTVCell" customModule="HighTime" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="288" height="227"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PassLessonTestTVCell" rowHeight="251" id="Wcm-7O-C0Q" customClass="PassLessonTestTVCell" customModule="HighTime" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="288" height="251"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wcm-7O-C0Q" id="13p-pE-0xm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="288" height="226.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="288" height="250.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63z-NQ-65X">
@@ -3551,9 +3551,9 @@
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzO-9f-rSL" customClass="RadioButton" customModule="MBRadioButton">
-                                                            <rect key="frame" x="26" y="59" width="232" height="18"/>
+                                                            <rect key="frame" x="26" y="59" width="232" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="sLu-yx-gOi"/>
+                                                                <constraint firstAttribute="height" constant="21" id="sLu-yx-gOi"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <state key="normal" title="a) правильный">
@@ -3561,9 +3561,9 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZA-oZ-dd7" customClass="RadioButton" customModule="MBRadioButton">
-                                                            <rect key="frame" x="26" y="94" width="232" height="18"/>
+                                                            <rect key="frame" x="26" y="97" width="232" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="cTD-fB-dEa"/>
+                                                                <constraint firstAttribute="height" constant="21" id="cTD-fB-dEa"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <state key="normal" title="b) не правильный">
@@ -3571,9 +3571,9 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pl-0Y-TpB" customClass="RadioButton" customModule="MBRadioButton">
-                                                            <rect key="frame" x="26" y="129" width="232" height="18"/>
+                                                            <rect key="frame" x="26" y="135" width="232" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="7Ku-ta-noe"/>
+                                                                <constraint firstAttribute="height" constant="21" id="7Ku-ta-noe"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <state key="normal" title="с) не правильный">
@@ -3581,9 +3581,9 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6Y-cg-XdU" customClass="RadioButton" customModule="MBRadioButton">
-                                                            <rect key="frame" x="26" y="164" width="236" height="18"/>
+                                                            <rect key="frame" x="26" y="173" width="236" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="18" id="sJc-VH-dd2"/>
+                                                                <constraint firstAttribute="height" constant="21" id="sJc-VH-dd2"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <state key="normal" title="d) правильный">
@@ -3591,9 +3591,9 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVr-xn-rY2" customClass="RadioButton" customModule="MBRadioButton">
-                                                            <rect key="frame" x="26" y="199" width="236" height="17"/>
+                                                            <rect key="frame" x="26" y="211" width="236" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="17" id="vIJ-v2-And"/>
+                                                                <constraint firstAttribute="height" constant="21" id="vIJ-v2-And"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <state key="normal" title="е) не правильный">
@@ -3645,7 +3645,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestWithImagesTVCell" rowHeight="555" id="ZGs-op-H0O" customClass="TestWithImagesTVCell" customModule="HighTime" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="255" width="288" height="555"/>
+                                                <rect key="frame" x="0.0" y="279" width="288" height="555"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZGs-op-H0O" id="Knf-x9-TAF">
                                                     <rect key="frame" x="0.0" y="0.0" width="288" height="554.5"/>

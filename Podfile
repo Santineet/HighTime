@@ -8,7 +8,6 @@ target 'HighTime' do
   # Pods for HighTime
     pod 'Alamofire'
     pod 'ObjectMapper'
-    pod 'MMProgressHUD'
     pod 'SDWebImage'
     pod 'RxSwift'
     pod 'RxCocoa'

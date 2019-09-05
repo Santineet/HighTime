@@ -31,7 +31,6 @@ class PassLessonTestVC: UIViewController {
     //MARK: Button Clicked
     func didTappedAnswerButton(answerButton:RadioButton, cell:UITableViewCell){
         guard let  indexPathTapped = tableView.indexPath(for: cell) else {return}
-        
         test.tests[indexPathTapped.row].isSelected = answerButton.tag
         let answerIndex = answerButton.tag - 1
         if test.tests[indexPathTapped.row].answers[answerIndex].correct == true {
@@ -77,11 +76,12 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
             question.content = question.content.replacingOccurrences(of: "&amp;", with: " ")
             question.content = question.content.replacingOccurrences(of: "amp;", with: " ")
             question.content = question.content.replacingOccurrences(of: "nbsp;", with: " ")
+            question.content = question.content.replacingOccurrences(of: "ndash;", with: " ")
+
             question.content = question.content.replacingOccurrences(of: "rsquo;", with: " ")
             question.content = question.content.replacingOccurrences(of: "  ", with: " ")
             
             cell.content.text = question.content
-            
             //присваивание title button'aм
             for i in 0..<5{
                 if i < question.answers.count {
@@ -105,6 +105,7 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
             
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "TestWithImagesTVCell", for: indexPath) as! TestWithImagesTVCell
+            cell.link = self
             let question = self.test.tests[indexPath.row]
             cell.content.text = question.content
             
@@ -140,7 +141,17 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
         
         if let cell = cell as? TestWithImagesTVCell {
             let question = self.test.tests[indexPath.row]
+          
+            question.content = question.content.replacingOccurrences(of: "&amp;", with: " ")
+            question.content = question.content.replacingOccurrences(of: "amp;", with: " ")
+            question.content = question.content.replacingOccurrences(of: "nbsp;", with: " ")
+            question.content = question.content.replacingOccurrences(of: "ndash;", with: " ")
+            
+            question.content = question.content.replacingOccurrences(of: "rsquo;", with: " ")
+            question.content = question.content.replacingOccurrences(of: "  ", with: " ")
+            
             cell.content.text = question.content
+            
             if question.isSelected != 0 {
                 let selectNum = question.isSelected - 1
                 cell.viewContainerCell.selectedButton = cell.answersButtonArray[selectNum]
@@ -168,7 +179,6 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let questionText = test.tests[indexPath.row].content
         
-        
         let stringSizeAsText: CGSize = getStringSizeForFont(font: UIFont(name: "Avenir", size: 14.0)!, myText: questionText)
         let labelWidth: CGFloat = UIScreen.main.bounds.width - 42.0
         let originalLabelHeight: CGFloat = 14.0
@@ -195,16 +205,16 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
         
         //MARK: Answers without image
         if question.answers.count == 2 {
-            let height = 128 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
+            let height = 134 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
             return height
         } else if  question.answers.count == 3 {
-            let height = 163 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
+            let height = 175 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
             return height
         } else if question.answers.count == 4 {
-            let height = 198 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
+            let height = 216 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
             return height
         } else if  question.answers.count == 5 {
-            let height = 233 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
+            let height = 277 - originalLabelHeight + CGFloat(labelLines*stringSizeAsText.height)
             return  height
         } else {
             return  100
@@ -214,6 +224,7 @@ extension PassLessonTestVC: UITableViewDelegate, UITableViewDataSource{
     
     
     
+   
     // Метод для рассчета размера Cell
     func getStringSizeForFont(font: UIFont, myText: String) -> CGSize {
         let fontAttributes = [NSAttributedString.Key.font: font]

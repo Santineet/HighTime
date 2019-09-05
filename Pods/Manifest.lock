@@ -1,7 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
   - MBRadioButton (1.4)
-  - MMProgressHUD (0.3.2)
   - ObjectMapper (3.5.1)
   - PKHUD (5.3.0)
   - RxCocoa (5.0.0):
@@ -17,7 +16,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - MBRadioButton
-  - MMProgressHUD
   - ObjectMapper
   - PKHUD
   - RxCocoa
@@ -28,7 +26,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - MBRadioButton
-    - MMProgressHUD
     - ObjectMapper
     - PKHUD
     - RxCocoa
@@ -39,7 +36,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   MBRadioButton: dcf111c9bb633d4cf6e83200d804af6e025033c8
-  MMProgressHUD: a913b116ba6791d67d37f9fb4211079200fb7595
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
@@ -47,6 +43,6 @@ SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
 
-PODFILE CHECKSUM: 6be74f226c1fffc3de15f1ac42486405ef75cd4c
+PODFILE CHECKSUM: ae7cef8231c6ebb186db11aeba45eb0c70e23ec9
 
 COCOAPODS: 1.5.3

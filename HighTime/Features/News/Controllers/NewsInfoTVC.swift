@@ -86,6 +86,12 @@ class NewsInfoTVC: UITableViewController {
             text = text.replacingOccurrences(of: "amp;", with: " ")
             text = text.replacingOccurrences(of: "rsquo;", with: " ")
             text = text.replacingOccurrences(of: "nbsp;", with: " ")
+            text = text.replacingOccurrences(of: "ldquo;", with: " ")
+            text = text.replacingOccurrences(of: "laquo;", with: " ")
+            text = text.replacingOccurrences(of: "rdquo;", with: " ")
+            text = text.replacingOccurrences(of: "nbash;", with: " ")
+            text = text.replacingOccurrences(of: "ndash;", with: " ")
+            text = text.replacingOccurrences(of: "raquo;", with: " ")
             text = text.replacingOccurrences(of: "  ", with: " ")
             
             cell.titleNews.text = self.newsId.titleNew

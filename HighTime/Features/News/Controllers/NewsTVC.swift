@@ -62,8 +62,15 @@ class NewsTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTVCell", for: indexPath) as! NewsTVCell
-        
         let news = self.news[indexPath.row]
+
+        news.messageNews = news.messageNews.replacingOccurrences(of: "&amp;", with: " ")
+        news.messageNews = news.messageNews.replacingOccurrences(of: "amp;", with: " ")
+        news.messageNews = news.messageNews.replacingOccurrences(of: "nbsp;", with: " ")
+        news.messageNews = news.messageNews.replacingOccurrences(of: "ndash;", with: " ")
+        news.messageNews = news.messageNews.replacingOccurrences(of: "rsquo;", with: " ")
+        news.messageNews = news.messageNews.replacingOccurrences(of: "  ", with: " ")
+        
         cell.titleNews.text = news.titleNew
         cell.messageNews.text = news.messageNews
         cell.dateNews.text = "18-08-2019"
