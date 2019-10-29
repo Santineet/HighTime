@@ -18,6 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         IQKeyboardManager.shared.enable = true
         LoginLogoutManager.instance.updateRootVC()
+        
+        IAPManager.shared.setupPurchases { success in
+            if success {
+                
+                IAPManager.shared.getProducts()
+                
+            }
+        }
+
+        
         return true
     }
 

@@ -17,19 +17,17 @@ class ProfileTVC: UITableViewController {
     let disposeBag = DisposeBag()
     var levelNames = [String]()
     var myLevels = [LevelsModel]()
+    var levelId = [Int]()
     var userInfo = UserInfoModel()
     let colorImagesArray = ["Alphabet":"alphabetColor.png", "Beginner":"beginnerColor.png", "Pre-Intermediate":"preIntermediateColor.png", "Intermediate":"intermediateColor.png", "Upper-Intermediate":"upperIntermediateColor", "Advanced":"advancedColor.png"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.allowsSelection = false
         self.tableView.tableFooterView = UIView()
         HUD.show(.progress)
         getMyLevels()
         getUserInfo()
     }
-    
- 
     
     func getMyLevels(){
         HUD.hide(afterDelay: 3)
@@ -44,9 +42,10 @@ class ProfileTVC: UITableViewController {
             self.setupMyLevels()
         }).disposed(by: disposeBag)
         
-        self.profileVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
-            print(error.localizedDescription)
+        self.profileVM.myLevelsErrorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+            
             HUD.hide()
+            Alert.displayAlert(title: "", message: error.localizedDescription , vc: self)
         }).disposed(by: disposeBag)
         
     }
@@ -61,9 +60,8 @@ class ProfileTVC: UITableViewController {
         }
         self.profileVM.userInfoBehaviorRelay.skip(1).subscribe(onNext: { (userInfo) in
             self.userInfo = userInfo
-            print(userInfo.balance)
             self.tableView.reloadData()
-
+            
         }).disposed(by: disposeBag)
         
         self.profileVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
@@ -76,27 +74,39 @@ class ProfileTVC: UITableViewController {
     
     func setupMyLevels(){
         var numArray = ["0","0","0","0","0","0"]
+        var levelId = [0,0,0,0,0,0]
+        
         for oneLevel in self.myLevels{
             if oneLevel.name == "Alphabet" {
                 numArray[0] = "Alphabet"
+                levelId[0] = 2
             } else if oneLevel.name == "Beginner" {
                 numArray[1] = "Beginner"
+                levelId[1] = 3
             } else if oneLevel.name == "Pre-Intermediate"{
                 numArray[2] = "Pre-Intermediate"
+                levelId[2] = 4
             } else if oneLevel.name == "Intermediate"{
                 numArray[3] = "Intermediate"
+                levelId[3] = 5
             } else if oneLevel.name == "Upper-Intermediate"{
                 numArray[4] = "Upper-Intermediate"
+                levelId[4] = 6
             }  else if oneLevel.name == "Advanced"{
                 numArray[5] = "Advanced"
+                levelId[5] = 7
             }
         }
         
-        for i in numArray {
-            if i != "0" {
-               self.levelNames.append(i)
+        for i in 0..<numArray.count {
+            if numArray[i] != "0" {
+                self.levelNames.append(numArray[i])
+            }
+            if levelId[i] != 0 {
+                self.levelId.append(levelId[i])
             }
         }
+        
         
         self.tableView.reloadData()
         HUD.hide()
@@ -117,13 +127,11 @@ class ProfileTVC: UITableViewController {
             let email = UserDefaults.standard.value(forKey: "userEmail") as! String
             cell.userName.text = name
             cell.userEmail.text = email
-            cell.personalAccount.text = userInfo.accountNumber
-            cell.balance.text = userInfo.balance
-
+            
             return cell
         } else if indexPath.row == levelNames.count + 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LogOutTVCell", for: indexPath) as! LogOutTVCell
-            cell.balanceInfo.addTarget(self, action: #selector(self.clickedBalansInfo), for: .touchUpInside)
+            cell.vc = self
             return cell
         }
         
@@ -135,18 +143,44 @@ class ProfileTVC: UITableViewController {
         return cell
         
     }
+
     
-    @objc func clickedBalansInfo(){
-        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TerminalInfoVC") as! TerminalInfoVC
-        vc.accountNum = userInfo.accountNumber
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.row > 0  && indexPath.row < levelNames.count + 1{
+            let level = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LevelInfoTVC") as! LevelInfoTVC
+            
+            let id = self.levelId[indexPath.row - 1]
+            for i in 0..<myLevels.count{
+                
+                if myLevels[i].id == id {
+                    
+                    let oldContent = myLevels[i].content
+                    var newContent = oldContent.replacingOccurrences(of: "&amp;", with: " ")
+                    newContent = newContent.replacingOccurrences(of: "amp;", with: "")
+                    newContent = newContent.replacingOccurrences(of: "bull;", with: " ")
+                    newContent = newContent.replacingOccurrences(of: "nbsp;", with: "")
+                    myLevels[i].content = newContent
+                    
+                    level.levelInfo = myLevels[i]
+                    navigationController?.pushViewController(level, animated: true)
+                    
+                }
+            }
+            
+            
+            
+        }
+        
+        
     }
     
     //MARK: heightForRowAt
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 186
+            return 136
         } else if indexPath.row == levelNames.count + 1 {
             return 115
         }

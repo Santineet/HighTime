@@ -15,17 +15,17 @@ class LessonRepository: NSObject {
     func getLessonTutorial(lessonId: Int) -> Observable<VideoTutorialByLessonIdModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getTutorialByLessonId(lessonId: lessonId, completion: { (response, error) in
-                if response != nil{
-                guard let jsonArray = response as? [String:Any] else {
-                    return }
-                guard let lesson = Mapper<VideoTutorialByLessonIdModel>().map(JSON: jsonArray) else {
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
                 }
-                observer.onNext(lesson)
-                observer.onCompleted()
-                } else {
-                    print(error?.localizedDescription ?? "error")
+                
+                if response != nil{
+                    
+                    guard let jsonArray = response as? [String:Any] else {
+                        return }
+                    guard let lesson = Mapper<VideoTutorialByLessonIdModel>().map(JSON: jsonArray) else { return }
+                    observer.onNext(lesson)
+                    observer.onCompleted()
                 }
             })
             return Disposables.create()

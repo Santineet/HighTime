@@ -21,7 +21,6 @@ class CellForCollectioView: UITableViewCell {
     }
 
     func reloadData(){
-        print("ReloadData")
             self.collectionView.reloadData()
     }
     

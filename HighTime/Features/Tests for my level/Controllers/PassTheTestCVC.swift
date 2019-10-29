@@ -52,7 +52,6 @@ class PassTheTestCVC: UICollectionViewController {
         }).disposed(by: disposeBag)
        
         self.testVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
-            print(error.localizedDescription)
             HUD.hide()
             
         }).disposed(by: disposeBag)

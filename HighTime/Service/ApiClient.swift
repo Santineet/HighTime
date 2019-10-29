@@ -171,19 +171,19 @@ class ServiceManager: NSObject {
         }
     }
     
-    func getPaymentUrl(levelId: Int, completion: @escaping Completion){
-        let token = UserDefaults.standard.value(forKey: "userToken")
-        let header: HTTPHeaders = ["token": "\(token ?? "")"]
-        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/buy-with-paybox/\(levelId)") else { return }
-        Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
-            switch responseJSON.result {
-            case .success:
-                completion(responseJSON.result.value, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
-    }
+//    func getPaymentUrl(levelId: Int, completion: @escaping Completion){
+//        let token = UserDefaults.standard.value(forKey: "userToken")
+//        let header: HTTPHeaders = ["token": "\(token ?? "")"]
+//        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/buy-with-paybox/\(levelId)") else { return }
+//        Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
+//            switch responseJSON.result {
+//            case .success:
+//                completion(responseJSON.result.value, nil)
+//            case .failure(let error):
+//                completion(nil, error)
+//            }
+//        }
+//    }
     
     
     //MARK: Запрос информации покупок уровней для профиля
@@ -213,7 +213,6 @@ class ServiceManager: NSObject {
             case .success:
                 completion(responseJSON.result.value, nil)
             case .failure(let error):
-                print(error.localizedDescription)
                 completion(nil, error)
             }
         }
@@ -221,19 +220,19 @@ class ServiceManager: NSObject {
     
 
     
-    func paymentWithPay24(levelId: Int, completion: @escaping Completion) {
-        let token = UserDefaults.standard.value(forKey: "userToken")
-        let header: HTTPHeaders = ["token": "\(token ?? "")"]
-        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/buy-with-balance/\(levelId)") else { return }
-        Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
-            switch responseJSON.result {
-            case .success:
-                completion(responseJSON.result.value, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
-    }
+//    func paymentWithPay24(levelId: Int, completion: @escaping Completion) {
+//        let token = UserDefaults.standard.value(forKey: "userToken")
+//        let header: HTTPHeaders = ["token": "\(token ?? "")"]
+//        guard let lessonTutorialURL = URL(string: "http://apiprod.htlife.biz/api/user/payment/buy-with-balance/\(levelId)") else { return }
+//        Alamofire.request(lessonTutorialURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { (responseJSON) in
+//            switch responseJSON.result {
+//            case .success:
+//                completion(responseJSON.result.value, nil)
+//            case .failure(let error):
+//                completion(nil, error)
+//            }
+//        }
+//    }
     
     
     

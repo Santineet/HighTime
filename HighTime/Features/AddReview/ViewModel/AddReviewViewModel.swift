@@ -42,11 +42,9 @@ class AddReviewViewModel: NSObject{
                     case .success(let upload,_,_ ):
                         upload.uploadProgress(closure: { (progress) in
                             
-                            print(progress)
                         })
                         upload.responseJSON
                             { response in
-                                print(response.result)
                                 if response.result.value != nil
                                 {
                                     

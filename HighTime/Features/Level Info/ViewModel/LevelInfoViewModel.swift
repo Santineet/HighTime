@@ -15,8 +15,12 @@ class LevelInfoViewModel: NSObject {
     var reachability:Reachability?
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
     let lessonsBehaviorRelay = BehaviorRelay<[LessonInfoByLevelId]>(value: [])
-    let isOpenBehaviorRelay = BehaviorRelay<LevelIsOpenModel>(value: LevelIsOpenModel())
-    let promocodeBehaviorRelay = BehaviorRelay<PaymentWithPromocode>(value: PaymentWithPromocode())
+    var isOpenBehaviorRelay = BehaviorRelay<LevelIsOpenModel>(value: LevelIsOpenModel())
+    var isOpenErrorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
+    var promocodeBehaviorRelay = BehaviorRelay<PaymentWithPromocode>(value: PaymentWithPromocode())
+    var promocodeErrorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
     
     private let disposeBag = DisposeBag()
     private let repository = LevelInfoRepository()
@@ -40,7 +44,7 @@ class LevelInfoViewModel: NSObject {
         self.repository.getLevelIsOpen(levelId: levelId).subscribe(onNext: { (isOpen) in
             self.isOpenBehaviorRelay.accept(isOpen)
         }, onError: { (error) in
-            self.errorBehaviorRelay.accept(error)
+            self.isOpenErrorBehaviorRelay.accept(error)
         }).disposed(by: disposeBag)
         
     }
@@ -48,11 +52,9 @@ class LevelInfoViewModel: NSObject {
     func paymentWithPromocode(levelId: Int,promocode: String, completion: @escaping (Error?) -> ()) {
         if isConnnected() == true {
             self.repository.paymentWithPromocode(levelId: levelId, promocode: promocode).subscribe(onNext: { (success) in
-                print("success is work")
-                print(success.result)
                 self.promocodeBehaviorRelay.accept(success)
             }, onError: { (error) in
-                self.errorBehaviorRelay.accept(error)
+                self.promocodeErrorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
             
         } else {

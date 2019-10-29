@@ -22,6 +22,10 @@ class PaymentInfoTVCell: UITableViewCell {
         // Initialization code
     }
 
+    func deleteText(){
+        self.promoCode.text = ""
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

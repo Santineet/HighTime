@@ -19,19 +19,20 @@ class NewsRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getNews(completion: { (response, error) in
                
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var allNews = [NewsModel]()
-                for i in 0..<jsonArray.count{
-                    guard let news = Mapper<NewsModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
-                
-                    allNews.append(news)
-                
-                    if allNews.count == jsonArray.count {
-                        observer.onNext(allNews)
-                        observer.onCompleted()
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var allNews = [NewsModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let news = Mapper<NewsModel>().map(JSON: jsonArray[i]) else { return }
+                        
+                        allNews.append(news)
+                        
+                        if allNews.count == jsonArray.count {
+                            observer.onNext(allNews)
+                            observer.onCompleted()
+                        }
                     }
                 }
                 

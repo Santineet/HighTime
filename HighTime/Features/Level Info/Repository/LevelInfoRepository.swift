@@ -18,18 +18,24 @@ class LevelInfoRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             let param = ["id": levelId]
             ServiceManager.sharedInstance.getLessonsInfoByLevelId(param: param, completion: { (response, error) in
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var lessonsInfo = [LessonInfoByLevelId]()
-                for i in 0..<jsonArray.count{
-                    guard let lessonInfo = Mapper<LessonInfoByLevelId>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
+                
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                } else {
+                    
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var lessonsInfo = [LessonInfoByLevelId]()
+                    for i in 0..<jsonArray.count{
+                        guard let lessonInfo = Mapper<LessonInfoByLevelId>().map(JSON: jsonArray[i]) else {
+                            return
+                        }
+                        lessonsInfo.append(lessonInfo)
+                        if lessonsInfo.count == jsonArray.count {
+                            observer.onNext(lessonsInfo)
+                            observer.onCompleted()
+                        }
                     }
-                    lessonsInfo.append(lessonInfo)
-                    if lessonsInfo.count == jsonArray.count {
-                        observer.onNext(lessonsInfo)
-                        observer.onCompleted()
-                    }
+                    
                 }
             })
             return Disposables.create()
@@ -42,14 +48,19 @@ class LevelInfoRepository: NSObject {
         return Observable.create({ (observer) -> Disposable in
             let param = ["id": levelId]
             ServiceManager.sharedInstance.getLevelIsOpen(param: param, completion: { (response, error) in
-                guard let jsonArray = response as? [String:Any] else { return }
                 
-                guard let isOpen = Mapper<LevelIsOpenModel>().map(JSON: jsonArray) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    
+                } else {
+                    guard let jsonArray = response as? [String:Any] else { return }
+                    
+                    guard let isOpen = Mapper<LevelIsOpenModel>().map(JSON: jsonArray) else {
                         return
                     }
-                observer.onNext(isOpen)
-                        observer.onCompleted()
+                    observer.onNext(isOpen)
+                    observer.onCompleted()
+                }
             })
             return Disposables.create()
         })
@@ -58,27 +69,27 @@ class LevelInfoRepository: NSObject {
     
     func paymentWithPromocode(levelId: Int,promocode: String)-> Observable<PaymentWithPromocode>{
         return Observable.create({ (observer) -> Disposable in
-          
+            
             ServiceManager.sharedInstance.paymentWithPromocode(levelId: levelId, promocode: promocode, completion: { (response, error) in
                 
-                guard let jsonArray = response as? [String:Any] else {
-                    print("JSON REturn")
-                    return
-                }
-
-                guard let success = Mapper<PaymentWithPromocode>().map(JSON: jsonArray) else {
-        
-                    print("erroesuccess")
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                } else {
+                    guard let jsonArray = response as? [String:Any] else {
+                        return
+                    }
+                    
+                    guard let success = Mapper<PaymentWithPromocode>().map(JSON: jsonArray) else {
+                        
+                        return
+                    }
+                    observer.onNext(success)
+                    observer.onCompleted()
                 }
-                print("success23232 \(success.result)")
-                observer.onNext(success)
-                observer.onCompleted()
             })
             return Disposables.create()
         })
-
+        
         
     }
     

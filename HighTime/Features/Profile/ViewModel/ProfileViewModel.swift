@@ -13,8 +13,10 @@ import RxCocoa
 class ProfileViewModel: NSObject {
     
     var errorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
-    let myLevelsBehaviorRelay = BehaviorRelay<[LevelsModel]>(value: [])
-    let userInfoBehaviorRelay = BehaviorRelay<UserInfoModel>(value: UserInfoModel())
+    var myLevelsBehaviorRelay = BehaviorRelay<[LevelsModel]>(value: [])
+    var userInfoBehaviorRelay = BehaviorRelay<UserInfoModel>(value: UserInfoModel())
+    var myLevelsErrorBehaviorRelay = BehaviorRelay<Error>(value: NSError.init(message: ""))
+
     var reachability:Reachability?
     
     private let disposeBag = DisposeBag()
@@ -25,7 +27,7 @@ class ProfileViewModel: NSObject {
             self.repository.getMyLevels().subscribe(onNext: { (levelsInfo) in
                 self.myLevelsBehaviorRelay.accept(levelsInfo)
             }, onError: { (error) in
-                self.errorBehaviorRelay.accept(error)
+                self.myLevelsErrorBehaviorRelay.accept(error)
             }).disposed(by: disposeBag)
         } else {
             completion(NSError.init(message: "Нет соединения"))

@@ -17,17 +17,19 @@ class LevelsRepository: NSObject {
     func getLevels() -> Observable<[LevelsModel]> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getLevels(completion: { (response, error) in
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var levelsInfo = [LevelsModel]()
-                for i in 0..<jsonArray.count{
-                    guard let levelInfo = Mapper<LevelsModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
-                    levelsInfo.append(levelInfo)
-                    if levelsInfo.count == jsonArray.count {
-                        observer.onNext(levelsInfo)
-                        observer.onCompleted()
+                
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var levelsInfo = [LevelsModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let levelInfo = Mapper<LevelsModel>().map(JSON: jsonArray[i]) else { return }
+                        levelsInfo.append(levelInfo)
+                        if levelsInfo.count == jsonArray.count {
+                            observer.onNext(levelsInfo)
+                            observer.onCompleted()
+                        }
                     }
                 }
             })
@@ -39,18 +41,19 @@ class LevelsRepository: NSObject {
     func getLevelsIsOpen() -> Observable<[LevelsModel]> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getLevelsIsOpenForProfile(completion: { (response, error) in
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var isOpenLevels = [LevelsModel]()
-                for i in 0..<jsonArray.count{
-                guard let isOpenLevel = Mapper<LevelsModel>().map(JSON: jsonArray[i]) else {
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
-                    }
-                    isOpenLevels.append(isOpenLevel)
-                    
-                    if isOpenLevels.count == jsonArray.count {
-                        observer.onNext(isOpenLevels)
-                        observer.onCompleted()
+                } else {
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var isOpenLevels = [LevelsModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let isOpenLevel = Mapper<LevelsModel>().map(JSON: jsonArray[i]) else { return }
+                        isOpenLevels.append(isOpenLevel)
+                        
+                        if isOpenLevels.count == jsonArray.count {
+                            observer.onNext(isOpenLevels)
+                            observer.onCompleted()
+                        }
                     }
                 }
             })

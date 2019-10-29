@@ -21,8 +21,8 @@ class MainScreenVC: UIViewController {
     @IBOutlet weak var ourTeam: UIButton!
     @IBOutlet weak var students: UIButton!
     @IBOutlet weak var instruction: UIButton!
-    
-    override func viewDidLoad() {
+
+    override func viewDidLoad(){
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.21, green: 0.48, blue: 0.96, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white ]
@@ -57,19 +57,6 @@ class MainScreenVC: UIViewController {
 
     }
     
-    
-    
-    
-    
-    @IBAction func logOut(_ sender: UIBarButtonItem) {
-        let token = UserDefaults.standard.value(forKey: "userToken") as! String
-        UserDefaults.standard.removeObject(forKey: "\(token)myLevel")
-        UserDefaults.standard.removeObject(forKey: "userToken")
-        UserDefaults.standard.removeObject(forKey: "userName")
-        UserDefaults.standard.removeObject(forKey: "userEmail")
-        LoginLogoutManager.instance.updateRootVC()
-    
-    }
     
     func dropShadow(button: UIButton) {
         button.layer.masksToBounds = false

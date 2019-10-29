@@ -18,17 +18,18 @@ class ReviewRepository: NSObject {
     func getReview() -> Observable<[ReviewModel]> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getReviewList(completion: { (response, error) in
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var allReview = [ReviewModel]()
-                for i in 0..<jsonArray.count{
-                    guard let review = Mapper<ReviewModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
-                    allReview.append(review)
-                    if allReview.count == jsonArray.count {
-                        observer.onNext(allReview)
-                        observer.onCompleted()
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var allReview = [ReviewModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let review = Mapper<ReviewModel>().map(JSON: jsonArray[i]) else { return }
+                        allReview.append(review)
+                        if allReview.count == jsonArray.count {
+                            observer.onNext(allReview)
+                            observer.onCompleted()
+                        }
                     }
                 }
             })

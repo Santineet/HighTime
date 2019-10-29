@@ -163,8 +163,11 @@
 		2EB8B69823053E2B0014921E /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB8B69723053E2A0014921E /* ApiClient.swift */; };
 		2EB8B69C230549990014921E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB8B69B230549990014921E /* LoginViewModel.swift */; };
 		2EB8B69E23054BC00014921E /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB8B69D23054BC00014921E /* LogInModel.swift */; };
+		2EBB171F2346505E00051E73 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB171E2346505D00051E73 /* IAPManager.swift */; };
+		2EBB17222346509200051E73 /* IAPProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB17212346509200051E73 /* IAPProducts.swift */; };
 		2EC5803023056D8100C3621E /* LoginSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC5802F23056D8100C3621E /* LoginSuccess.swift */; };
 		2EC58034230678C800C3621E /* aboutUs.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EC58033230678C800C3621E /* aboutUs.png */; };
+		2ECC87B223462D6B006B04A2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECC87B123462D6B006B04A2 /* StoreKit.framework */; };
 		2ECD783D231AA4E000548BE1 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD783C231AA4E000548BE1 /* LoginRepository.swift */; };
 		2ECD783F231BB22100548BE1 /* LoginUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD783E231BB22100548BE1 /* LoginUserModel.swift */; };
 		2ECD7841231BCFAB00548BE1 /* LoginToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD7840231BCFAB00548BE1 /* LoginToken.swift */; };
@@ -358,8 +361,11 @@
 		2EB8B69723053E2A0014921E /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		2EB8B69B230549990014921E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2EB8B69D23054BC00014921E /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
+		2EBB171E2346505D00051E73 /* IAPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		2EBB17212346509200051E73 /* IAPProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProducts.swift; sourceTree = "<group>"; };
 		2EC5802F23056D8100C3621E /* LoginSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccess.swift; sourceTree = "<group>"; };
 		2EC58033230678C800C3621E /* aboutUs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutUs.png; sourceTree = "<group>"; };
+		2ECC87B123462D6B006B04A2 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2ECD783C231AA4E000548BE1 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
 		2ECD783E231BB22100548BE1 /* LoginUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserModel.swift; sourceTree = "<group>"; };
 		2ECD7840231BCFAB00548BE1 /* LoginToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToken.swift; sourceTree = "<group>"; };
@@ -403,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B2EB0F556F982566844AD78 /* Pods_HighTime.framework in Frameworks */,
+				2ECC87B223462D6B006B04A2 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +419,7 @@
 		2AB97BC723BABA449827478A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2ECC87B123462D6B006B04A2 /* StoreKit.framework */,
 				F35CF9BCB9DB491D9C975A2B /* Pods_HighTime.framework */,
 			);
 			name = Frameworks;
@@ -822,6 +830,7 @@
 		2E6D5EE72303E393008A8B9F /* HighTime */ = {
 			isa = PBXGroup;
 			children = (
+				2EBB171A2346500400051E73 /* In-App Purchase */,
 				2EB8B6892303EAE20014921E /* Service */,
 				2E6D5F022303E898008A8B9F /* Helper */,
 				2EB8B695230424A10014921E /* Model */,
@@ -1104,6 +1113,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		2EBB171A2346500400051E73 /* In-App Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				2EBB17202346508300051E73 /* IAPModel */,
+				2EBB171D2346504300051E73 /* IAPManagers */,
+			);
+			path = "In-App Purchase";
+			sourceTree = "<group>";
+		};
+		2EBB171D2346504300051E73 /* IAPManagers */ = {
+			isa = PBXGroup;
+			children = (
+				2EBB171E2346505D00051E73 /* IAPManager.swift */,
+			);
+			path = IAPManagers;
+			sourceTree = "<group>";
+		};
+		2EBB17202346508300051E73 /* IAPModel */ = {
+			isa = PBXGroup;
+			children = (
+				2EBB17212346509200051E73 /* IAPProducts.swift */,
+			);
+			path = IAPModel;
+			sourceTree = "<group>";
+		};
 		2ECD783B231AA4C500548BE1 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,6 +1262,11 @@
 				TargetAttributes = {
 					2E6D5EE42303E393008A8B9F = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1420,6 +1459,7 @@
 				2E07F7002309A172005B4731 /* OtherNewsInfoTVCell.swift in Sources */,
 				2EAB48222313C09700A978E2 /* LevelsRepository.swift in Sources */,
 				2E6D5F1F2303E899008A8B9F /* Extantion.swift in Sources */,
+				2EBB17222346509200051E73 /* IAPProducts.swift in Sources */,
 				2E06D2612310032F00B753AC /* DoneTestCVCell.swift in Sources */,
 				2E6D5F232303E899008A8B9F /* IQTitleBarButtonItem.swift in Sources */,
 				2E6BFC7C2318182400B6F021 /* PaymentURLModel.swift in Sources */,
@@ -1471,6 +1511,7 @@
 				2E6BFC9223191E7C00B6F021 /* ProfileViewModel.swift in Sources */,
 				2E06D240230D63CF00B753AC /* Answers.swift in Sources */,
 				2ECD7841231BCFAB00548BE1 /* LoginToken.swift in Sources */,
+				2EBB171F2346505E00051E73 /* IAPManager.swift in Sources */,
 				2EAB48242313C17300A978E2 /* LevelsViewModel.swift in Sources */,
 				2EAB48202313BD4F00A978E2 /* LevelsModel.swift in Sources */,
 				2EE79FAC23154F040080D871 /* LessonRepository.swift in Sources */,
@@ -1661,13 +1702,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P5T8Z6XWL5;
+				DEVELOPMENT_TEAM = YDG37K9NRQ;
 				INFOPLIST_FILE = HighTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sunrise.HighTime;
+				PRODUCT_BUNDLE_IDENTIFIER = pro.sunrise.hightime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1680,13 +1722,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P5T8Z6XWL5;
+				DEVELOPMENT_TEAM = YDG37K9NRQ;
 				INFOPLIST_FILE = HighTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sunrise.HighTime;
+				PRODUCT_BUNDLE_IDENTIFIER = pro.sunrise.hightime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

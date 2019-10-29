@@ -17,17 +17,19 @@ class TestRepository: NSObject {
     func getTests() -> Observable<[PassTestModel]> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getTest(completion: { (response, error) in
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var questions = [PassTestModel]()
-                for i in 0..<jsonArray.count{
-                    guard let question = Mapper<PassTestModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
-                    questions.append(question)
-                    if questions.count == jsonArray.count {
-                        observer.onNext(questions)
-                        observer.onCompleted()
+                
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                } else {
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var questions = [PassTestModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let question = Mapper<PassTestModel>().map(JSON: jsonArray[i]) else { return }
+                        questions.append(question)
+                        if questions.count == jsonArray.count {
+                            observer.onNext(questions)
+                            observer.onCompleted()
+                        }
                     }
                 }
             })

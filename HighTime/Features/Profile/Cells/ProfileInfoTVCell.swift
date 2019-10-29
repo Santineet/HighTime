@@ -12,9 +12,7 @@ class ProfileInfoTVCell: UITableViewCell {
 
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
-    @IBOutlet weak var personalAccount: UILabel!
     
-    @IBOutlet weak var balance: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

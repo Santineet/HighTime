@@ -15,17 +15,22 @@ class ProfileRepository: NSObject {
     func getMyLevels() -> Observable<[LevelsModel]> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getLevelsIsOpenForProfile(completion: { (response, error) in
-                guard let jsonArray = response as? [[String:Any]] else { return }
-                var levelsInfo = [LevelsModel]()
-                for i in 0..<jsonArray.count{
-                    guard let levelInfo = Mapper<LevelsModel>().map(JSON: jsonArray[i]) else {
-                        observer.onError(error ?? Constant.BACKEND_ERROR)
-                        return
-                    }
-                    levelsInfo.append(levelInfo)
-                    if levelsInfo.count == jsonArray.count {
-                        observer.onNext(levelsInfo)
-                        observer.onCompleted()
+                
+                if error != nil {
+                    observer.onError(error ?? Constant.BACKEND_ERROR)
+                    
+                } else {
+                    guard let jsonArray = response as? [[String:Any]] else { return }
+                    var levelsInfo = [LevelsModel]()
+                    for i in 0..<jsonArray.count{
+                        guard let levelInfo = Mapper<LevelsModel>().map(JSON: jsonArray[i]) else {
+                            return
+                        }
+                        levelsInfo.append(levelInfo)
+                        if levelsInfo.count == jsonArray.count {
+                            observer.onNext(levelsInfo)
+                            observer.onCompleted()
+                        }
                     }
                 }
             })
@@ -38,13 +43,16 @@ class ProfileRepository: NSObject {
     func getUserInfo() -> Observable<UserInfoModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.getUserInfo(completion: { (response, error) in
-                guard let jsonArray = response as? [String:Any] else { return }
-                guard let userInfo = Mapper<UserInfoModel>().map(JSON: jsonArray) else {
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                } else {
+                    guard let jsonArray = response as? [String:Any] else { return }
+                    guard let userInfo = Mapper<UserInfoModel>().map(JSON: jsonArray) else {
+                        return
+                    }
+                    observer.onNext(userInfo)
+                    observer.onCompleted()
                 }
-                observer.onNext(userInfo)
-                observer.onCompleted()
             })
             
             return Disposables.create()

@@ -15,13 +15,16 @@ class LoginRepository: NSObject {
     func registr(name: String, emailOrNumber: String, password: String) -> Observable<LogInModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.registr(name: name, emailOrNumber: emailOrNumber, password: password, completion: { (responseJSON, error) in
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let userInfo = Mapper<LogInModel>().map(JSON: jsonArray) else {
+                
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                } else {
+                    
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let userInfo = Mapper<LogInModel>().map(JSON: jsonArray) else { return }
+                    observer.onNext(userInfo)
+                    observer.onCompleted()
                 }
-                observer.onNext(userInfo)
-                observer.onCompleted()
             })
             return Disposables.create()
         })
@@ -30,13 +33,14 @@ class LoginRepository: NSObject {
     func login(emailOrNumber: String, password: String) -> Observable<LogInModel> {
         return Observable.create({ (observer) -> Disposable in
             ServiceManager.sharedInstance.login(emailOrNumber: emailOrNumber, password: password, completion: { (responseJSON, error) in
-                guard let jsonArray = responseJSON as? [String:Any] else { return }
-                guard let userInfo = Mapper<LogInModel>().map(JSON: jsonArray) else {
+                if error != nil {
                     observer.onError(error ?? Constant.BACKEND_ERROR)
-                    return
+                } else {
+                    guard let jsonArray = responseJSON as? [String:Any] else { return }
+                    guard let userInfo = Mapper<LogInModel>().map(JSON: jsonArray) else { return }
+                    observer.onNext(userInfo)
+                    observer.onCompleted()
                 }
-                observer.onNext(userInfo)
-                observer.onCompleted()
             })
             return Disposables.create()
         })

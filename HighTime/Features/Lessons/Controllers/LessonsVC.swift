@@ -101,7 +101,6 @@ extension LessonsVC: UITableViewDelegate,UITableViewDataSource {
         } else {
             
             let lessonVideoString = lesson.videos[indexPath.row].urlLowVideo.replacingOccurrences(of: " ", with: "%20")
-            print(lessonVideoString)
             guard let videoURL = URL(string: "\(lessonVideoString)") else { return }
             let video = AVPlayer(url: videoURL)
             let videoPlayer = AVPlayerViewController()

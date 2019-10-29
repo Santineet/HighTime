@@ -51,7 +51,8 @@ class ReviewListTVC: UITableViewController {
         
         self.reviewVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
             HUD.hide()
-            print(error.localizedDescription)
+
+            Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
         }).disposed(by: disposeBag)
         
     }

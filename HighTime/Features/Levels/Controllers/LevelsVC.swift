@@ -102,6 +102,18 @@ class LevelsVC: UIViewController {
         let myLevel: Int = UserDefaults.standard.value(forKey: "\(token)myLevel") as! Int
             buttonArray![myLevel].setImage(UIImage(named: colorImagesArray[myLevel]), for: .normal)
             }
+        
+        for level in self.levels {
+            
+            if let _ = UserDefaults.standard.value(forKey: "level\(level.id)") {
+               
+                buttonArray![level.id - 2].setImage(UIImage(named: colorImagesArray[level.id - 2]), for: .normal)
+            }
+            
+        }
+        
+        
+        
         }
         
     
