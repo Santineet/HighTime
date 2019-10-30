@@ -100,28 +100,3 @@ extension IAPManager: SKProductsRequestDelegate {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

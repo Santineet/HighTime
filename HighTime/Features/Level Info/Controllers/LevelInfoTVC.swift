@@ -62,7 +62,6 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
         
         UserDefaults.standard.setValue(1, forKey: "level\(levelInfo.id)")
  
-        
         self.tableView.reloadData()
         HUD.hide()
     }
@@ -95,10 +94,7 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
         levelInfoVM.getLevelIsOpen(levelId: levelInfo.id)
         levelInfoVM.isOpenBehaviorRelay.skip(1).subscribe(onNext: { (isOpen) in
             self.isOpen = isOpen
-//            if isOpen.isOpen == true {
-//                let token = UserDefaults.standard.value(forKey: "userToken") as! String
-//            UserDefaults.standard.set(1, forKey: "\(token)\(self.levelInfo.id)")
-//            }
+
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellForCollectioView") as! CellForCollectioView
             
             cell.reloadData()
@@ -158,7 +154,6 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.collectionView.reloadData()
-            
             return cell
             
         }
@@ -197,7 +192,7 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
             cell.collectionView.delegate = self
             cell.collectionView.dataSource = self
             cell.collectionView.reloadData()
-            
+        
             return cell
         
     }
@@ -247,9 +242,16 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
     //IAP target function
     @objc func clickedBuyLevelButton(){
         HUD.show(.progress)
-        HUD.hide(afterDelay: 4, completion: nil)
+        HUD.hide(afterDelay: 25, completion: nil)
+        
+        if iapManager.products.count > 0 {
         let identifier = iapManager.products[0].productIdentifier
-        iapManager.purchase(productWith: identifier)
+            
+            iapManager.purchase(productWith: identifier)
+        } else {
+            HUD.hide()
+            Alert.displayAlert(title: "", message: "Произошла ошибка, попробуйте позже", vc: self)
+        }
     }
     
     

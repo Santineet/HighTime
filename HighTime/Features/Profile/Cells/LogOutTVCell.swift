@@ -42,7 +42,6 @@ class LogOutTVCell: UITableViewCell {
         UserDefaults.standard.removeObject(forKey: "userEmail")
         for i in 2..<8 {
             UserDefaults.standard.removeObject(forKey: "level\(i)")
-            
         }
         
         LoginLogoutManager.instance.updateRootVC()
