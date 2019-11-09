@@ -25,11 +25,18 @@ class IAPManager: NSObject {
             return
         }
         callback(false)
+        
     }
     
     public func getProducts() {
         let identifiers: Set = [
-            IAPProducts.buyLevel.rawValue
+            IAPProducts.alphabetLevel.rawValue,
+            IAPProducts.beginnerLevel.rawValue,
+            IAPProducts.pre_intermediateLevel.rawValue,
+            IAPProducts.intermediateLevel.rawValue,
+            IAPProducts.upper_intermediateLevel.rawValue,
+            IAPProducts.advancedLevel.rawValue
+
         ]
         
         let productRequest = SKProductsRequest(productIdentifiers: identifiers)
@@ -70,7 +77,10 @@ extension IAPManager: SKPaymentTransactionObserver {
     private func failed(transaction: SKPaymentTransaction) {
         if let transactionError = transaction.error as NSError? {
             if transactionError.code != SKError.paymentCancelled.rawValue {
-                print("Ошибка транзакции: \(transaction.error!.localizedDescription)")
+            //------------------
+                NotificationCenter.default.post(name: NSNotification.Name("Payment Error"), object: nil)
+//---------------------
+                
             }
         }
         paymentQueue.finishTransaction(transaction)

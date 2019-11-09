@@ -34,7 +34,9 @@ class ProfileTVC: UITableViewController {
         self.profileVM.getLevels { (error) in
             if error != nil {
                 HUD.hide()
-                print(error?.localizedDescription ?? "error")
+
+                Alert.displayAlert(title: "", message: error?.localizedDescription ?? "Для получения данных требуется подключение к интернету", vc: self)
+                
             }
         }
         self.profileVM.myLevelsBehaviorRelay.skip(1).subscribe(onNext: { (myLevels) in

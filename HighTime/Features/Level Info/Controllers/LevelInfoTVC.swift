@@ -30,10 +30,26 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
         navigationItem.title = levelInfo.name
         tableView.allowsSelection = false
         
+        setupNavigationBar()
+        
         notificationCenter.addObserver(self, selector: #selector(reload), name: NSNotification.Name(IAPManager.productNotificationIdentifier), object: nil)
 
         
-         notificationCenter.addObserver(self, selector: #selector(buyLevel), name: NSNotification.Name(IAPProducts.buyLevel.rawValue), object: nil)
+         notificationCenter.addObserver(self, selector: #selector(levelPurchased), name: NSNotification.Name(IAPProducts.alphabetLevel.rawValue), object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(levelPurchased), name: NSNotification.Name(IAPProducts.beginnerLevel.rawValue), object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(levelPurchased), name: NSNotification.Name(IAPProducts.pre_intermediateLevel.rawValue), object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(levelPurchased), name: NSNotification.Name(IAPProducts.intermediateLevel.rawValue), object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(levelPurchased), name: NSNotification.Name(IAPProducts.upper_intermediateLevel.rawValue), object: nil)
+       
+        notificationCenter.addObserver(self, selector: #selector(levelPurchased), name: NSNotification.Name(IAPProducts.advancedLevel.rawValue), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(paymentError), name: NSNotification.Name("Payment Error"), object: nil)
+
+        
+        
         
     }
     
@@ -42,31 +58,40 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self)
     }
 
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Restore", style: .plain, target: self, action: #selector(restorePurchases))
+    }
+    
+
+    
     //MARK: IAP Methods
     
-//    private func setupNavigationBar() {
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Restore", style: .plain, target: self, action: #selector(restorePurchases))
-////    }
-//
-//    @objc private func restorePurchases() {
-//        iapManager.restoreCompletedTransactions()
-//    }
+    @objc private func restorePurchases() {
+        iapManager.restoreCompletedTransactions()
+    }
 
     @objc private func reload() {
         
-
     }
     
-    @objc private func buyLevel() {
-        print("продукт куплен")
+    @objc private func paymentError() {
+        
+        HUD.hide()
+        Alert.displayAlert(title: "Ошибка", message: "Ошибка транзакции: Сбой подключения к iTunes Store", vc: self)
+        
+    }
+    
+    
+    @objc private func levelPurchased() {
         
         UserDefaults.standard.setValue(1, forKey: "level\(levelInfo.id)")
  
         self.tableView.reloadData()
         HUD.hide()
     }
-    
-    
+   
+
     func getLevelInfo() {
         HUD.show(.progress)
         levelInfoVM.getLessonsByLevelId(levelId: levelInfo.id) { (error) in
@@ -157,6 +182,7 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
             return cell
             
         }
+
         
         //Если уровень не куплен
         if indexPath.row == 0 {
@@ -239,15 +265,50 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    //IAP target function
+    //MARK: IAP target function
     @objc func clickedBuyLevelButton(){
         HUD.show(.progress)
         HUD.hide(afterDelay: 25, completion: nil)
+
         
         if iapManager.products.count > 0 {
-        let identifier = iapManager.products[0].productIdentifier
+            switch levelInfo.id {
+                
+            case 2:
+                
+                let identifier = iapManager.products[1].productIdentifier
+                iapManager.purchase(productWith: identifier)
             
-            iapManager.purchase(productWith: identifier)
+            case 3:
+                
+                let identifier = iapManager.products[4].productIdentifier
+                iapManager.purchase(productWith: identifier)
+                
+            case 4:
+                
+                let identifier = iapManager.products[5].productIdentifier
+                iapManager.purchase(productWith: identifier)
+                
+            case 5:
+                
+                let identifier = iapManager.products[2].productIdentifier
+                iapManager.purchase(productWith: identifier)
+                
+            case 6:
+                
+                let identifier = iapManager.products[3].productIdentifier
+                iapManager.purchase(productWith: identifier)
+                
+            case 7:
+                
+                let identifier = iapManager.products[0].productIdentifier
+                iapManager.purchase(productWith: identifier)
+                
+            default:
+                Alert.displayAlert(title: "", message: "Произошла ошибка, попробуйте позже", vc: self)
+            }
+       
+           
         } else {
             HUD.hide()
             Alert.displayAlert(title: "", message: "Произошла ошибка, попробуйте позже", vc: self)
@@ -257,7 +318,7 @@ class LevelInfoTVC: UITableViewController, UITextFieldDelegate {
     
     //MARK: calculateCellSize
     func calculateCellSize(numberOfCells: Int) -> Int {
-        let buttonSize = Int(view.bounds.width/3 - 40)
+        let buttonSize = Int(view.bounds.width/4-10)
         let numberOfLines = Int(numberOfCells/4)
         var height: Int = 0
         if numberOfCells % 4 == 0 {
@@ -388,6 +449,8 @@ extension LevelInfoTVC: UICollectionViewDataSource, UICollectionViewDelegate, UI
         return CGSize(width: view.bounds.width/4 - 10, height: view.bounds.width/4 - 10)
     }
     
+
+
     
     
 }

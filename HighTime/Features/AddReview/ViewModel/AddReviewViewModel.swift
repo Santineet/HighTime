@@ -53,6 +53,8 @@ class AddReviewViewModel: NSObject{
                         }
                     case .failure(let encodingError):
                         print(encodingError.localizedDescription)
+                        completion(nil,encodingError)
+
                         break
                     }
                 }

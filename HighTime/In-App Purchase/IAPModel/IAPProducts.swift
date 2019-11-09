@@ -9,6 +9,13 @@
 import Foundation
 
 enum IAPProducts: String {
-    case buyLevel = "pro.sunrise.buyLevels"
+    
+    case alphabetLevel = "pro.sunrise.Alphabet"
+    case beginnerLevel = "pro.sunrise.beginner"
+    case pre_intermediateLevel = "pro.sunrise.pre_intermediate"
+    case intermediateLevel = "pro.sunrise.Intermediate"
+    case upper_intermediateLevel = "pro.sunrise.Upper_Intermediate"
+    case advancedLevel = "pro.sunrise.Advanced"
+
 
 }

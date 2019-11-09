@@ -70,7 +70,9 @@ class LevelsVC: UIViewController {
         self.levelsVM.getLevelIsOpen()
         self.levelsVM.isOpenBehaviorRelay.skip(1).subscribe(onNext: { (isOpenLevels) in
             self.isOpen = isOpenLevels
+            
             for isOpenLevel in self.isOpen {
+
                 if isOpenLevel.name == "Alphabet" {
                     self.alphabetLevel.setImage(UIImage(named: "alphabetColor.png"), for: .normal)
                 } else if isOpenLevel.name == "Beginner" {
@@ -88,6 +90,9 @@ class LevelsVC: UIViewController {
          }).disposed(by: disposeBag)
         
         self.levelsVM.errorBehaviorRelay.skip(1).subscribe(onNext: { (error) in
+        
+            Alert.displayAlert(title: "", message: error.localizedDescription, vc: self)
+    
         }).disposed(by: disposeBag)
         
     }
